@@ -18,7 +18,7 @@ The script analysis.R contains all the code necessary to run the analysis.
 - nhts-2013-house-v1-20140718.dta [9.4 MB]
 - nhts-2013-person-v1-20140718.dta [51.3 MB]
 
-Data was downloaded 1st December 2014.
+Data was downloaded on 1st December 2014.
 
 
 ## Proposal
