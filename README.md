@@ -21,7 +21,6 @@ The script analysis.R contains all the code necessary to run the analysis.
 Data was downloaded on 1st December 2014.
 
 
-## Proposal
 
 
 
