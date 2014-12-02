@@ -91,22 +91,117 @@ The objectives of the National Household Travel Survey 2013 have been formulated
 	+ Not applicable = 8
 	+ Unspecified = 9
 
-- Car (G_CAR):
+- Car (G_CAR): Car license
 	+ Yes = 1
 	+ No = 2
 	+ Not applicable = 8
 	+ Unspecified = 9
 
-- Heavy vehicle (G_HEAVYVEH): 
+- Heavy vehicle (G_HEAVYVEH): Heavy vehicle license
 	+ Yes = 1
 	+ No = 2
 	+ Not applicable = 8
 	+ Unspecified = 9
 
+Disability
+
+- Seeing (even with glasses if he/she wears them) (Q11ASEE)
+	+ No difficulty = 1
+	+ Some difficulty = 2
+	+ A lot of difficulty = 3
+ 	+ Unable to do = 4
+	+ Do not know = 5
+	+ Cannot yet be determined = 6
+	+ Unspecified = 9
+
+- Hearing (even with a hearing aid, if he/she wears one) (Q11BHEAR)
+	+ No difficulty = 1
+	+ Some difficulty = 2
+	+ A lot of difficulty = 3
+ 	+ Unable to do = 4
+	+ Do not know = 5
+	+ Cannot yet be determined = 6
+	+ Unspecified = 9
 
 
+- Walking a kilometre or climbing a flight of steps (Q11CWALK)
+	+ No difficulty = 1
+	+ Some difficulty = 2
+	+ A lot of difficulty = 3
+ 	+ Unable to do = 4
+	+ Do not know = 5
+	+ Cannot yet be determined = 6
+	+ Unspecified = 9
 
+- Remembering and concentrating (Q11DCONCENTR)
+	+ No difficulty = 1
+	+ Some difficulty = 2
+	+ A lot of difficulty = 3
+ 	+ Unable to do = 4
+	+ Do not know = 5
+	+ Cannot yet be determined = 6
+	+ Unspecified = 9
 
+- With self-care, such as washing or dressing (Q11ECARE)
+	+ No difficulty = 1
+	+ Some difficulty = 2
+	+ A lot of difficulty = 3
+ 	+ Unable to do = 4
+	+ Do not know = 5
+	+ Cannot yet be determined = 6
+	+ Unspecified = 9
+
+- In communicating in his/her usual language including sign language (Q11FCOMM): Communication here does not refer to the actual use of language, but the mental ability to use language to communicate. It therefore does not refer to a young child of two years who cannot yet speak properly. A child has to be evaluated against his age group – is his ability to communicate normal for his age group? Think for example how someone who is mentally disabled and 20 years old, communicate with others. That is the kind of communication disability that needs to be identified in this question.
+
+	+ No difficulty = 1
+	+ Some difficulty = 2
+	+ A lot of difficulty = 3
+ 	+ Unable to do = 4
+	+ Do not know = 5
+	+ Cannot yet be determined = 6
+	+ Unspecified = 9
+
+Assistive devices: This question is aimed at finding out whether household members use any correctional aids for their general functioning. The enumerator is instructed to read out all options and mark either “Yes” or “No”. ‘Other assistive devices' refers to anything that helps people with their normal functioning. It could be a guide dog for the blind; oxygen tank to assist with breathing; or, in the case of someone who had their colon removed, a bag to assist with their bodily waste clearance, etc.
+
+- Eye glasses/spectacles/contact lenses (Q12EYE)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Hearing aid (Q12HEAR)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Walking stick/walking frame (Q12WALK)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- A wheelchair (Q12WCHAIR)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Chroninc medication (Q12CHRONM)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Crutches (Q12CRUTCH)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Guide dogs/assisatance dogs (Q12GUID)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Personal assistant (Q12PA)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
 
 
 
