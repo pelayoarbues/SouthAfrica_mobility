@@ -15,11 +15,11 @@ sapply(packages, require, character.only=TRUE, quietly=TRUE)
 
 
 #                               READ DATA
-<<<<<<< HEAD
 person.df <- read.dta("./Data/stata/nhts-2013-person-v1-20140718.dta")
-=======
+house.df <- read.dta("./Data/stata/nhts-2013-house-v1-20140718.dta")
 
->>>>>>> FETCH_HEAD
+#Merge data
+dt <- data.table(merge(person.df, house.df, by=c("UQNO"),all=TRUE))
 
 
 
