@@ -67,19 +67,41 @@ The objectives of the National Household Travel Survey 2013 have been formulated
 - Stayed Nights (B_NIGHTS): This question is asked for each person found in the selected dwelling. This question is important because it identifies the persons to be included as members of the household and the information regarding them should be recorded as obtained. According to the definition above, a person must have stayed at least four nights a week, on average, during the last four weeks and shared resources in the household to be regarded as a household member. If both of these requirements are not met by an individual, that individual is eliminated on thse secod option (2=No). The instruction in this question is to end the interview with those who have answered ‘No’ in this question.
 
 - Gender (GENDER):
-	1. Male 
-	2. Female
+	+ Male = 1 
+	+ Female = 2
 
 - Age (D_AGE):
 	+ Less than 1 year = 0 
 	+ Valid range: 1 – 110
 
 - Population group (RACE):
-	1 = African/Black 
-	2 = Coloured
-	3 = Indian/asian 
-	4 = White
-	5 = Other
+	+ African/Black = 1
+	+ Coloured = 2
+	+ Indian/asian = 3 
+	+ White = 4
+
+- Have drivers licence (F_HAVELICENCE): The aim on this question is to identify the number of people eligible to drive. The interest is in the possession of driver’s licenses. The instruction is to answer “No” for persons aged 15 years and less. The instruction in this question is to skip to H for those who have answered ‘No’ in this question:
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Motorcycle (G_MOTORCYC): Motorcycle license
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Car (G_CAR):
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Heavy vehicle (G_HEAVYVEH): 
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
 
 
 
