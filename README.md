@@ -61,6 +61,16 @@ Person data file:
 	7. Gauteng
 	8. Mpumalanga 
 	9. Limpopo
+- Stayed Nights (B_NIGHTS): This question is asked for each person found in the selected dwelling. This question is important because it identifies the persons to be included as members of the household and the information regarding them should be recorded as obtained. According to the definition above, a person must have stayed at least four nights a week, on average, during the last four weeks and shared resources in the household to be regarded as a household member. If both of these requirements are not met by an individual, that individual is eliminated on thse secod option (2=No). The instruction in this question is to end the interview with those who have answered ‘No’ in this question.
+- Gender (GENDER):
+	1. Male 
+	2. Female
+
+- Age (D_AGE):
+	+ Less than 1 year = 0 
+	+ Valid range: 1 – 110
+
+
 
 
 
