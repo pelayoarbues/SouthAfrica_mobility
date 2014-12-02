@@ -37,8 +37,7 @@ The objectives of the National Household Travel Survey 2013 have been formulated
 	3. To assess attitudes towards transport services and facilities
 	4. To measure the availability, ownership and use of motor cars
 	5. To understand the travel choices of different market segments
-	6. To determine accessibility to services such as workplaces, education facilites, social needs markets and
-others
+	6. To determine accessibility to services such as workplaces, education facilites, social needs markets and others
 	7. To assess the effectiveness of the existing subsidy mechanisms
 	8. To assist in identifying the disadvantaged regions and transport needs for investment in transport infrastructure
 	9. To measure key performance indicators (KPIs) as required by the National Land Transport Act (Act No. 5 of 2009) and the National Land Transport Strategic Framework
