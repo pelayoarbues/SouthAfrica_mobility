@@ -46,22 +46,26 @@ The objectives of the National Household Travel Survey 2013 have been formulated
 
 ##Variables
 
-Person data file:
+*Person data file:*
 
 - Unique number (UQNO): Unique Household Identifier. This is the unique household identifier, which can be used to link data from this file with data for the same household from other files. This is a 19-digit number that is made up of the PSU number, dwelling unit number, Household number and questionnaire number.
+
 - Person number (PersonNO): The two fields above (unique number and person number) create a 19-digit unique person identifier, which can be used to link a record from this file with another record for the same individuals from other files.
 - Travel Analysis zones (TAZCODE): The National Department of Transport identified 342 National Travel Analysis Zones (TAZs) through consultation with different transport authorities throughout the country. The whole country is divided into TAZs. These TAZS are based along the district municipality and provincial boundaries. However, there are instances where the TAZs cut across provincial boundaries.
-- Province (Pr_code): South African provinces according to the provincial boundaries as demarcated in December 2005.
-1. Western Cape 
-2. Eastern Cape 
-3. Northern Cape 
-4. Free State
-5. KwaZulu Natal 
-6. North West
-7. Gauteng
-8. Mpumalanga 
-9. Limpopo
+
+- Province (Pr_code): South African provinces according to the provincial boundaries as demarcated in December 2005:
+	1. Western Cape 
+	2. Eastern Cape 
+	3. Northern Cape 
+	4. Free State
+	5. KwaZulu Natal 
+	6. North West
+	7. Gauteng
+	8. Mpumalanga 
+	9. Limpopo
+
 - Stayed Nights (B_NIGHTS): This question is asked for each person found in the selected dwelling. This question is important because it identifies the persons to be included as members of the household and the information regarding them should be recorded as obtained. According to the definition above, a person must have stayed at least four nights a week, on average, during the last four weeks and shared resources in the household to be regarded as a household member. If both of these requirements are not met by an individual, that individual is eliminated on thse secod option (2=No). The instruction in this question is to end the interview with those who have answered ‘No’ in this question.
+
 - Gender (GENDER):
 	1. Male 
 	2. Female
@@ -69,6 +73,13 @@ Person data file:
 - Age (D_AGE):
 	+ Less than 1 year = 0 
 	+ Valid range: 1 – 110
+
+- Population group (RACE):
+	1 = African/Black 
+	2 = Coloured
+	3 = Indian/asian 
+	4 = White
+	5 = Other
 
 
 
