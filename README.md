@@ -53,15 +53,15 @@ Person data file:
 	- Person number (PersonNO): The two fields above (unique number and person number) create a 19-digit unique person identifier, which can be used to link a record from this file with another record for the same individuals from other files.
 	- Travel Analysis zones (TAZCODE): The National Department of Transport identified 342 National Travel Analysis Zones (TAZs) through consultation with different transport authorities throughout the country. The whole country is divided into TAZs. These TAZS are based along the district municipality and provincial boundaries. However, there are instances where the TAZs cut across provincial boundaries.
 	- Province (Pr_code): South African provinces according to the provincial boundaries as demarcated in December 2005.
-		1 = Western Cape 
-		2 = Eastern Cape 
-		3 = Northern Cape 
-		4 = Free State
-		5 = KwaZulu Natal 
-		6 = North West
-		7 = Gauteng
-		8 = Mpumalanga 
-		9 = Limpopo
+		1. Western Cape 
+		2. Eastern Cape 
+		3. Northern Cape 
+		4. Free State
+		5. KwaZulu Natal 
+		6. North West
+		7. Gauteng
+		8. Mpumalanga 
+		9. Limpopo
 
 
 
