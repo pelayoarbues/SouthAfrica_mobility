@@ -30,21 +30,20 @@ The survey covered land, air and water transport related travel. Land transport 
 
 The target population of the survey consisted of all private households and residents in workers' hostels in the nine provinces of South Africa. The survey does not cover other collective living quarters such as students' hostels, old- age homes, hospitals, prisons and military barracks and is therefore only representative of non-institutionalised and non-military persons in South Africa.
 
-The objectives of the National Household Travel Survey 2013 have been formulated within the context of the transport related policy, and strategic and planning responsibilities of the Department of Transport, the requirements of the Medium Term Strategic Framework (MTSF) 2009–2014, as well as the imperatives of the National Development Plan 2030 with a special focus on households in South Africa.
-These objectives were:
+The objectives of the National Household Travel Survey 2013 have been formulated within the context of the transport related policy, and strategic and planning responsibilities of the Department of Transport, the requirements of the Medium Term Strategic Framework (MTSF) 2009–2014, as well as the imperatives of the National Development Plan 2030 with a special focus on households in South Africa. These objectives were:
 
-a. To understand the transport needs and behaviour of households;
-b. To ascertain the cost of transport for households (to assess level of affordability);
-c. To assess attitudes towards transport services and facilities;
-d. To measure the availability, ownership and use of motor cars;
-e. To understand the travel choices of different market segments;
-f. To determine accessibility to services such as workplaces, education facilities, social needs markets and
-others;
-g. To assess the effectiveness of the existing subsidy mechanisms;
-h. To assist in identifying the disadvantaged regions and transport needs for investment in transport infrastructure;
-i. To measure key performance indicators (KPIs) as required by the National Land Transport Act (Act No. 5 of 2009) and the National Land Transport Strategic Framework;
-j. To measure usage of non-motorised transport by households; and
-k. To assess accessibility of public transport for people with disabilities and the elderly in the communities.
+	1. To understand the transport needs and behaviour of households
+	2. To ascertain the cost of transport for households (to assess level of affordability)
+	3. To assess attitudes towards transport services and facilities
+	4. To measure the availability, ownership and use of motor cars
+	5. To understand the travel choices of different market segments
+	6. To determine accessibility to services such as workplaces, education facilites, social needs markets and
+others
+	7. To assess the effectiveness of the existing subsidy mechanisms
+	8. To assist in identifying the disadvantaged regions and transport needs for investment in transport infrastructure
+	9. To measure key performance indicators (KPIs) as required by the National Land Transport Act (Act No. 5 of 2009) and the National Land Transport Strategic Framework
+	10. To measure usage of non-motorised transport by households
+	11. To assess accessibility of public transport for people with disabilities and the elderly in the communities.
 
 ##Variables
 
