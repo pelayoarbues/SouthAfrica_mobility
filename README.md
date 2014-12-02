@@ -47,7 +47,7 @@ k. To assess accessibility of public transport for people with disabilities and 
 
 ##Variables
 
-#Person data file:
+Person data file:
 
 	- Unique number (UQNO): Unique Household Identifier. This is the unique household identifier, which can be used to link data from this file with data for the same household from other files. This is a 19-digit number that is made up of the PSU number, dwelling unit number, Household number and questionnaire number.
 	- Person number (PersonNO): The two fields above (unique number and person number) create a 19-digit unique person identifier, which can be used to link a record from this file with another record for the same individuals from other files.
