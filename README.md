@@ -103,7 +103,7 @@ The objectives of the National Household Travel Survey 2013 have been formulated
 	+ Not applicable = 8
 	+ Unspecified = 9
 
-Disability
+Disability: The aim of this question is to measure disability of household members.
 
 - Seeing (even with glasses if he/she wears them) (Q11ASEE)
 	+ No difficulty = 1
@@ -161,7 +161,7 @@ Disability
 	+ Cannot yet be determined = 6
 	+ Unspecified = 9
 
-Assistive devices: This question is aimed at finding out whether household members use any correctional aids for their general functioning. The enumerator is instructed to read out all options and mark either “Yes” or “No”. ‘Other assistive devices' refers to anything that helps people with their normal functioning. It could be a guide dog for the blind; oxygen tank to assist with breathing; or, in the case of someone who had their colon removed, a bag to assist with their bodily waste clearance, etc.
+Assistive devices: This question is aimed at finding out whether household members use any correctional aids for their general functioning. 
 
 - Eye glasses/spectacles/contact lenses (Q12EYE)
 	+ Yes = 1
@@ -183,7 +183,7 @@ Assistive devices: This question is aimed at finding out whether household membe
 	+ No = 2
 	+ Unspecified = 9
 
-- Chroninc medication (Q12CHRONM)
+- Chronic medication (Q12CHRONM)
 	+ Yes = 1
 	+ No = 2
 	+ Unspecified = 9
@@ -203,5 +203,270 @@ Assistive devices: This question is aimed at finding out whether household membe
 	+ No = 2
 	+ Unspecified = 9
 
+- Other assistive devices (Q12OTHR): ‘Other assistive devices' refers to anything that helps people with their normal functioning. It could be a guide dog for the blind; oxygen tank to assist with breathing; or, in the case of someone who had their colon removed, a bag to assist with their bodily waste clearance, etc.
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
 
 
+
+- Social grant (Q13SOG): The aim of this question is to determine whether there are people in the household who receive social grant, pension or social relief assistance. Receiver refers to the person who qualifies for the grant and not the one who collects the money. Persons who receive pension from previous employment are excluded in this question. 
+	+ Yes = 1
+	+ No = 2
+	+ Do not know = 3
+	+ Unspecified = 9
+
+Grants should be marked in the column of the person who qualifies for the grant and not the one that receives/collects the grant. In the case of disability, the person who has the disability is the one who receives the grant and it should therefore be marked in his/her column. A person cannot receive grant in aid without being in receipt of another grant already. This is usually a war veteran's grant and/or an old-age grant. A child who is disabled will not get a disability grant, but a care dependency grant.
+The old-age grant is given to the aged who do not have any or a small source of income by the State. Someone who used to work for the State, for example a policeman or nurse, who gets a pension from the State, does not receive an old- age grant, but a pension and should not be listed under option 1.
+
+- Old-age grant (Q14OAG)
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Disability grant (Q14DIS)
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Child support grant (Q14CSG)
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Care dependency grant (Q14CAR)
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Foster child grant (Q14FOST)
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- War veterans grant (Q14WARVT)
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Grant-in-aid (Q14GRN)
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Social relief of distress (Q14SOC)
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+Days usually travel: The aim of the question is to establish on which days of the week people usually travel. The main interest is on the day of the week that household members usually travel when visiting their homes.
+- Monday (Q21MON); Tuesday (Q21TUES); Wednesday (Q21WED); Thursday (Q21THURS); Friday (Q21FRI); Saturday (Q21SAT); Sunday (Q21SUN):
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Travel in the last seven days (Q22TRIP): This question aims to determine whether people usually travel or not in the last seven days. This is regardless of the area visited, nor the means of transport, as long as a household member moved from one point to another. It is very important to note the reference period in this question (last seven days), which is taken to be seven days before the interview. If the interview is on Tuesday, the last seven days will be from Tuesday the previous week to Monday (the day before the interview day). This question also aims to check how often people travel.
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Reason not travel (Q23YNOTTRIP): It focuses on the reasons why the household members did not go anywhere in the last seven days. 
+	+ Did not need to travel = 01
+	+ Financial reasons (Not enough money) = 02 
+	+ Not well enough to travel/sick = 03 
+	+ Too expensive = 04 
+	+ Not enough time to travel = 05 
+	+ No available public transport = 07
+	+ Disabled: unable to leave the house = 08
+	+ Too old/young to travel =10
+	+ No interest/Nothing to see or do that appeals to me = 12
+	+ Taking care of children/sick/elderly relative = 13
+	+ No particular reason = 14
+ 	+ Other, Specify =16 
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+Number of trips to facilities: This question wants to determine the number of times that household members made trips to different places. Count there and back as two different trips. Information about travel patterns of the household members on the travel reference day is recorded. Information for each person from the selected dwelling unit is completed for their travel for a 24-hour period – refers as a travel reference day. This is a calendar day, commencing at 12 am on the nominated day and finishing at 11:59 pm of the same day. In order to ensure that data is collected for all seven days of the week, each selected dwelling unit has a pre-assigned randomly selected travel reference day. For multiple households the same travel day is applicable as for the main sampled household. In case of no trips a single zero is recorded.
+
+- Usual work place (Q24USULWRK)
+	+ Valid range: 00 -13
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- In the course of work/business (Q24CORSWRK)
+	+ Valid range: 00 - 15
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Visiting friends/relatives (Q24VFR)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- To take someone else somewhere (Q24TAKE)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Educational institution (Q24EDUC)
+	+ Valid range: 00 - 13
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Shops (Q24Shop)
+	+ Valid range: 00 - 13
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Looking for work (Q24LOOKWRK)
+	+ Valid range: 00 - 13
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Medical services (Q24MEDI)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Traditional healer (Q24TradH)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Welfare offices (Q24WELF)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+-Church (Q24CHURCH)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Home (Q24HOME)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Other (Q24OTHR) (Trips to facilities)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+Modes of travel used: Note to users
+This question is on the modes of travel that were used on the travel day by household members and the number of times they were used. For any other modes of travel that is not specified there is a provision to specify. If a respondent, for instance, walked all the way or used a bus, a single zero for all other categories and the number of times they walked or used a bus for option 21 and 3 respectively is recorded. If respondent travelled there and back using the same mode, it is counted as 2 times. 
+
+- Train (Metrorail) (Q25TRAIN)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Long distance train (Q25SHOSLZA)
+	+ Valid range: 00 - 06
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Bus (Q25BUS)
+	+ Valid range: 00 - 10
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- BRT bus/IRT bus (Q25BRT)
+	+ Valid range: 00 - 07
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Metered taxi (Q25METTAXI)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Commuter/short-distance/ local minibus taxi (Q25MINITAXI)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Long-distance minibus taxi (Q25LONGTAXI)
+	+ Valid range: 00 - 10
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Sedan taxi/ four plus one (Q25SEDATAXI)
+	+ Valid range: 00 - 12
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Bakkie taxi/ tambai (Q25BAKITAXI)
+	+ Valid range: 00 - 12
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Car/ Bakkie passenger (Q25CARPAS)
+	+ Valid range: 00 - 12
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Car/ Bakkie driver (Q25CARDRIV)
+	+ Valid range: 00 - 15
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Truck/Lorry/tractor/trailer passenger (Q25TRUCKPAS)
+	+ Valid range: 00 - 12
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Truck/Lorry /tractor/trailer driver (Q25TRUCKDRIV)
+	+ Valid range: 00 - 09
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Company vehicle (Q25COMVEH)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Scooter/motorcycle (Q25MBIKE)
+	+ Valid range: 00 - 12
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Bicycle (Q25BICYCLE)
+	+ Valid range: 00 - 12
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Animal drawn transport/vehicle (Q25ANITRANSP)
+	+ Valid range: 00 - 14
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Boat/ ship (Q25BOAT)
+	+ Valid range: 00 - 03
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Aircraft (Q25AIRCFT)
+	+ Valid range: 00 - 10
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Gautrain (Q25GAUT)
+	+ Valid range: 00 - 10
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Walking all the way (Q25WALK)
+	+ Valid range: 00 - 15
+	+ Not applicable = 88
+	+ Unspecified = 99
+	
+- Other (Q25OTHR)( Modes of travel used)
