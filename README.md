@@ -32,35 +32,35 @@ The target population of the survey consisted of all private households and resi
 
 The objectives of the National Household Travel Survey 2013 have been formulated within the context of the transport related policy, and strategic and planning responsibilities of the Department of Transport, the requirements of the Medium Term Strategic Framework (MTSF) 2009–2014, as well as the imperatives of the National Development Plan 2030 with a special focus on households in South Africa. These objectives were:
 
-	1. To understand the transport needs and behaviour of households
-	2. To ascertain the cost of transport for households (to assess level of affordability)
-	3. To assess attitudes towards transport services and facilities
-	4. To measure the availability, ownership and use of motor cars
-	5. To understand the travel choices of different market segments
-	6. To determine accessibility to services such as workplaces, education facilites, social needs markets and others
-	7. To assess the effectiveness of the existing subsidy mechanisms
-	8. To assist in identifying the disadvantaged regions and transport needs for investment in transport infrastructure
-	9. To measure key performance indicators (KPIs) as required by the National Land Transport Act (Act No. 5 of 2009) and the National Land Transport Strategic Framework
-	10. To measure usage of non-motorised transport by households
-	11. To assess accessibility of public transport for people with disabilities and the elderly in the communities.
+1. To understand the transport needs and behaviour of households
+2. To ascertain the cost of transport for households (to assess level of affordability)
+3. To assess attitudes towards transport services and facilities
+4. To measure the availability, ownership and use of motor cars
+5. To understand the travel choices of different market segments
+6. To determine accessibility to services such as workplaces, education facilites, social needs markets and others
+7. To assess the effectiveness of the existing subsidy mechanisms
+8. To assist in identifying the disadvantaged regions and transport needs for investment in transport infrastructure
+9. To measure key performance indicators (KPIs) as required by the National Land Transport Act (Act No. 5 of 2009) and the National Land Transport Strategic Framework
+10. To measure usage of non-motorised transport by households
+11. To assess accessibility of public transport for people with disabilities and the elderly in the communities.
 
 ##Variables
 
 Person data file:
 
-	- Unique number (UQNO): Unique Household Identifier. This is the unique household identifier, which can be used to link data from this file with data for the same household from other files. This is a 19-digit number that is made up of the PSU number, dwelling unit number, Household number and questionnaire number.
-	- Person number (PersonNO): The two fields above (unique number and person number) create a 19-digit unique person identifier, which can be used to link a record from this file with another record for the same individuals from other files.
-	- Travel Analysis zones (TAZCODE): The National Department of Transport identified 342 National Travel Analysis Zones (TAZs) through consultation with different transport authorities throughout the country. The whole country is divided into TAZs. These TAZS are based along the district municipality and provincial boundaries. However, there are instances where the TAZs cut across provincial boundaries.
-	- Province (Pr_code): South African provinces according to the provincial boundaries as demarcated in December 2005.
-		1. Western Cape 
-		2. Eastern Cape 
-		3. Northern Cape 
-		4. Free State
-		5. KwaZulu Natal 
-		6. North West
-		7. Gauteng
-		8. Mpumalanga 
-		9. Limpopo
+- Unique number (UQNO): Unique Household Identifier. This is the unique household identifier, which can be used to link data from this file with data for the same household from other files. This is a 19-digit number that is made up of the PSU number, dwelling unit number, Household number and questionnaire number.
+- Person number (PersonNO): The two fields above (unique number and person number) create a 19-digit unique person identifier, which can be used to link a record from this file with another record for the same individuals from other files.
+- Travel Analysis zones (TAZCODE): The National Department of Transport identified 342 National Travel Analysis Zones (TAZs) through consultation with different transport authorities throughout the country. The whole country is divided into TAZs. These TAZS are based along the district municipality and provincial boundaries. However, there are instances where the TAZs cut across provincial boundaries.
+- Province (Pr_code): South African provinces according to the provincial boundaries as demarcated in December 2005.
+	1. Western Cape 
+	2. Eastern Cape 
+	3. Northern Cape 
+	4. Free State
+	5. KwaZulu Natal 
+	6. North West
+	7. Gauteng
+	8. Mpumalanga 
+	9. Limpopo
 
 
 
