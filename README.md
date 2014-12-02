@@ -32,6 +32,7 @@ The target population of the survey consisted of all private households and resi
 
 The objectives of the National Household Travel Survey 2013 have been formulated within the context of the transport related policy, and strategic and planning responsibilities of the Department of Transport, the requirements of the Medium Term Strategic Framework (MTSF) 2009–2014, as well as the imperatives of the National Development Plan 2030 with a special focus on households in South Africa.
 These objectives were:
+
 a. To understand the transport needs and behaviour of households;
 b. To ascertain the cost of transport for households (to assess level of affordability);
 c. To assess attitudes towards transport services and facilities;
