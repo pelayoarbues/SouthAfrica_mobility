@@ -10,7 +10,7 @@
 
 #                         + LOAD REQUIRED PACKAGES +
 #Require packages
-packages <- c("foreign")
+packages <- c("foreign", "data.table")
 sapply(packages, require, character.only=TRUE, quietly=TRUE)
 
 

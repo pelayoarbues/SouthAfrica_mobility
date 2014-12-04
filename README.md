@@ -54,15 +54,15 @@ The objectives of the National Household Travel Survey 2013 have been formulated
 - Travel Analysis zones (TAZCODE): The National Department of Transport identified 342 National Travel Analysis Zones (TAZs) through consultation with different transport authorities throughout the country. The whole country is divided into TAZs. These TAZS are based along the district municipality and provincial boundaries. However, there are instances where the TAZs cut across provincial boundaries.
 
 - Province (Pr_code): South African provinces according to the provincial boundaries as demarcated in December 2005:
-	1. Western Cape 
-	2. Eastern Cape 
-	3. Northern Cape 
-	4. Free State
-	5. KwaZulu Natal 
-	6. North West
-	7. Gauteng
-	8. Mpumalanga 
-	9. Limpopo
+	+ Western Cape = 1
+	+ Eastern Cape = 2
+	+ Northern Cape = 3
+	+ Free State = 4
+	+ KwaZulu Natal = 5
+	+ North West = 6
+	+ Gauteng = 7
+	+ Mpumalanga = 8
+	+ Limpopo = 9
 
 - Stayed Nights (B_NIGHTS): This question is asked for each person found in the selected dwelling. This question is important because it identifies the persons to be included as members of the household and the information regarding them should be recorded as obtained. According to the definition above, a person must have stayed at least four nights a week, on average, during the last four weeks and shared resources in the household to be regarded as a household member. If both of these requirements are not met by an individual, that individual is eliminated on thse secod option (2=No). The instruction in this question is to end the interview with those who have answered ‘No’ in this question.
 
@@ -470,3 +470,264 @@ This question is on the modes of travel that were used on the travel day by hous
 	+ Unspecified = 99
 	
 - Other (Q25OTHR)( Modes of travel used)
+	+ Valid range: 00 - 12
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Reason for walking (Q26YWALK) It aims to establish the reasons why people walked all the way to their destination. Note that category 4 (Not enough public transport) means transport is available but not enough.
+	+ It was by choice
+	+ Public transport too expensive
+	+ No available public transport
+	+ Not enough public transport 
+	+ Nearby
+	+ Health reasons
+	+ To avoid traffic congestion
+	+ No parking at destination
+	+ Fuel costs
+	+ Other
+	+ Not applicable
+	+ Unspecified
+
+- Highest Grade (Q31HIEDU)
+The enumerators are instructed that it is only those qualifications already obtained that must be considered for household members. That means the current level, whereby a person is still busy with the studies, is not applicable. It is very important to complete each record even if the person has not attended school. Moreover, the enumerators are instructed that diplomas and certificates must be of at least six months duration.
+	+ No schooling = 98
+	+ Grade R/00 = 00
+	+ Grade 1/ Sub A/Class 1 = 01
+	+ Grade 2 / Sub B/Class 2 = 02
+	+ Grade 3/Standard 1/ ABET 1(Kha Ri Gude, Sanli) = 03
+	+ Grade 4/ Standard 2 = 04
+	+ Grade 5/ Standard 3/ ABET 2 = 05
+	+ Grade 6/Standard 4 = 06
+	+ Grade 7/Standard 5/ ABET 3 = 07
+	+ Grade 8/Standard 6/Form 1 = 08
+	+ Grade 9/Standard 7/Form 2/ ABET 4 = 09
+	+ Grade 10/ Standard 8/ Form 3 = 10
+	+ Grade 11/ Standard 9/ Form 4 = 11
+	+ Grade 12/Standard 10/Form 5/Matric (No Exemption) = 12
+	+ Grade 12/Standard 10/Form 5/Matric (Exemption *) = 13
+	+ NTC 1/ N1/NC (V) Level 2 = 14
+	+ NTC 2/ N2/ NC (V) Level 3 = 15
+	+ NTC 3/ N3/NC (V)/Level 4 = 16
+	+ N4/NTC 4 = 17
+	+ N5/NTC 5 = 18
+	+ N6/NTC 6 = 19
+	+ Certificate with less than Grade 12/Std 10 = 20 
+	+ Diploma with less than Grade 12/Std 10 = 21
+	+ Certificate with Grade 12/Std 10 = 22
+	+ Diploma with Grade 12/Std 10 = 23
+	+ Higher Diploma (Technikon) = 24
+	+ Post Higher Diploma (Technikon Masters, Doctoral) = 25
+	+ Bachelors Degree = 26
+	+ Bachelors Degree and post-graduate diploma = 27
+	+ Honours Degree = 28
+	+ Higher degree (Masters, Doctorate) = 29
+	+ Other =30
+	+ Do not know = 31
+	+ Unspecified = 99
+
+- Attending any educational institution (Q32ATTE)
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Educational Institution (Q33EDUII)
+	+ Pre-school (including day care, crèche, pre-primary, ECD centre, nursery school) = 1
+	+ School (including Grade R/Grade 0 learners who attend a formal school) = 2
+	+ Adult Basic Education and Training Learning Centre (ABET Centre) = 3
+	+ Literacy classes (e.g. Kha Ri Gude) = 4
+	+ Higher Educational Institution (University/ University of Technology) = 5
+	+ Further Education and Training College (FET) = 6
+	+ Other College = 7
+	+ Home based education/home schooling = 8
+	+ Other than any of the above = 9
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Distance learning (Q34DLRN)
+	+ Attending classes = 1
+	+ Distance learning = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Suburb/Town/Place name (Q35APLC): The purpose of the question is to find out about the place where the educational institutions are situated. This is mainly on the educational institution areas for those who are currently attending classes and distance learning.
+
+- Province (Q35bProvv)
+	+ Western Cape = 1
+	+ Eastern Cape = 2
+	+ Northern Cape = 3
+	+ Free State = 4
+	+ KwaZulu-Natal = 5
+	+ North West = 6
+	+ Gauteng = 7
+	+ Mpumalanga = 8
+	+ Limpopo = 9
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- District Code (Q35CDISTRCT): Please refer to the code list.
+
+- Travel Analysis Zone (Q35dTAZCODE_IMP)
+	+ Valid Range: 0042 – 9048
+	+ Unspecified: 9999
+
+- Days per week to educational institution (Q36DAYS): This refers to the number of days the member of the household goes to the educational institution even when he/she is not there to attend classes. Distance learners who attend classes weekly should also specify how many days they travel to their educational institution.
+	+ Valid Range: 1 – 7
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Time to educational institution (Q3START_TIMEA): This question is mainly interested on the usual time the household members leave their residence to the educational institutions. The purpose of this question is to determine demands for public transport at specific times. Information about travel patterns of the household members on the travel reference day is recorded. Information for each person from the selected dwelling unit is completed for their travel for a 24-hour period – refers as a travel reference day. This is a calendar day, commencing at 12 am on the nominated day and finishing at 11:59 pm of the same day.
+
+	+ Valid range: 00:40 – 20:00
+	+ Not applicable = 88:88
+	+ Unspecified = 99:99
+
+- Minutes walking to first transport (Q38WALKTO)
+	+ Valid range: 0 - 120
+	+ Not applicable = 888
+	+ Do not know = 998
+	+ Unspecified = 999
+
+- Minutes waiting for first transport (Q39WAIT)
+	+ Valid range: 0 - 120
+	+ Not applicable = 888
+	+ Do not know = 998
+	+ Unspecified = 999
+
+- Minutes walking at the end of trip (310WLKEDU)
+	+ Valid range: 0 - 120
+	+ Not applicable = 888
+	+ Do not know = 998
+	+ Unspecified = 999
+
+- Time to arrive at educational institution (Q3END_TIMEA)
+	+ Valid range: 03:39 – 20:45
+	+ Not applicable = 88:88
+	+ Unspecified = 99:99
+
+Mode of travel used to educational institution: This question is on the usual mode of travel used by household members to their educational institutions. There is provision for three transport types. The type of transport used first is indicated as mode 1, the second as mode 2 and so on. If the person uses more than three types of transport, only first three modes of travel are indicated.
+
+- Mode 1 to educational institution (Q312MODE1)
+	+ Train (Metrorail) = 1
+	+ Long distance train/Shosholoza = 2
+	+ Bus = 3
+	+ BRT bus/IRT bus = 4
+	+ Metered taxi = 5
+	+ Commuter/short-distance/ local minibus taxi = 6
+	+ Long-distance minibus taxi = 7
+	+ Sedan taxi/ four plus one = 8
+	+ Bakkie taxi/ tambai = 9
+	+ Car/ Bakkie passenger = 10
+	+ Car/ Bakkie driver = 11
+	+ Truck/Lorry/tractor/trailer passenger = 12
+	+ Truck/Lorry tractor/trailer driver = 13
+	+ Company vehicle = 14
+	+ Scooter/motorcycle = 15
+	+ Bicycle = 16
+	+ Animal drawn transport/vehicle = 17
+	+ Boat/ ship = 18
+	+ Aircraft = 19
+	+ Gautrain = 20
+	+ Walking all the way = 21
+	+ Other (specify) = 22
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Payment method for mode 1 (Q313MODE1, Q313MODE2, Q313MODE3)
+	+ Per single trip = 1
+	+ Per return trip = 2
+	+ Per week = 3
+	+ Per month = 4
+	+ Not applicable / I do not pay = 5
+	+ Do not know = 6
+	+ Not applicable = 7
+	+ Unspecified = 9
+
+- Mode1 to educational institution cost (Q314MODE1, Q314MODE2, Q314MODE3)
+	+ Valid range: 1 – 5610
+	+ Not applicable = 888888 
+	+ Unspecified = 888888 
+
+- Have a job (Q41WORK): This question is applicable to members who are age 15 years and above. It is meant to identify persons who are currently employed and unemployed or temporally absent from their income earning activity. This question requires the respondent to identify whether or not they have a formal work activity or informal work activity. Formal sector employment is where the employer (institution, business or private individuals) is registered for VAT to perform the activity. For example, nurse, mine worker, teacher, etc. who works in the formal institution, for example, government hospital.
+Informal sector employment is where the employer is not registered for VAT. For example, domestic work, street trading, taxi driver, etc. The main job/ business would be the one where the respondent spends the most time at.
+It is important to note the reference period, requested in this question, which is on the last seven days only.
+
+	+ Yes – formal sector (registered) = 1
+	+ Yes – informal sector = 2
+	+ No = 3
+	+ Not applicable = 8
+
+- Reason not working (Q42YNOTWRKK):
+	+ Scholar or student = 1
+	+ Homemaker or housewife = 2
+	+ Pensioner / retired person/ too old to work = 3
+	+ Seasonal worker not working presently = 4
+	+ Chooses not to work = 5
+	+ Cannot find work = 6
+	+ Health reasons = 7
+	+ Was on leave = 8
+	+ Other (specify) = 9
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Willing to work (Q43WILTOWRK): This question is aimed at people who are not working and/or running their own businesses. This question determines an individual’s willingness to take on employment.
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+Place of workplace: This question is only applicable to those who answered “Yes-formal sector” and “Yes-informal sector”. The purpose of the question is to find out about the place where the workplace is situated.
+
+- Suburb/Town/Place name (Q44APLC): Place names are listed in the dataset and are not coded.
+
+- Province (Q44BPROVV)
+	+ Western Cape = 1
+	+ Eastern Cape = 2
+	+ Northern Cape = 3
+	+ Free State = 4
+	+ KwaZulu Natal = 5
+	+ North West = 6
+	+ Gauteng = 7
+	+ Mpumalanga = 8
+	+ Limpopo = 9
+
+- District Code (Q44CDISTR)
+
+- Travel Analysis Zone (Q44DTAZCODE_IMP)
+	+ Valid range =  1001 – 9040
+	+ Not applicable = 8888
+	+ Unspecified = 9999
+- Days per week to work(Q45DAYSS)
+	+ Valid range: 1 – 7
+	+ Working from home= 8
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Total Salary/pay (Q46SAL): This question is applicable to all household members who have been performing economic activities in the past seven days as indicated in previous questions in this section. As per the instruction in the questionnaire the salary includes overtime, allowances bonus and any other deduction before tax. Moreover, the amounts are in whole numbers, without any text or decimals.
+	+ Valid range: 20 – 1500000
+	+ Not applicable = 888888888
+	+ Unspecified = 999999999
+
+- Salary period (Q47PER): This question is applicable to household members who have been performing economic activities in the last seven days and have given an amount in Q4.6. This refers to the interval in which the respondent receives his/her salary from his/her main employer.
+	+ Per week = 1
+	+ Per month = 2
+	+ Annually = 3
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Income category (Q48CAT):
+	+ Valid range: 01 – 16 
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Time leaving to work (Q4START_TIMEA): This question is on workers who travelled to work on the travel day, focusing on the time they usually leave to the workplace.
+	+ Valid range: 00:00 – 23:55
+	+ Not applicable = 88:88
+	+ Unspecified = 99:99
+
+- Time arriving at work (Q4END_TIMEA)
+	+ Valid range: 00:00 – 24:00
+	+ Not applicable = 88:88
+	+ Unspecified = 99:99
+
+
