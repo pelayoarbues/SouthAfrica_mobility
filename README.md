@@ -1,4 +1,4 @@
-## Project structure
+# Project structure
 
 This project is intended to analyze different southafrican mobility aspects and its structure is as follows:
 
@@ -10,7 +10,7 @@ This project is intended to analyze different southafrican mobility aspects and 
 
 The script analysis.R contains all the code necessary to run the analysis.
 
-## Data
+# Data
 
 
 [NHTS 2013](http://www.datafirst.uct.ac.za/dataportal/index.php/catalog/501) is originally stored in two .dta file contained in /Data:
@@ -44,9 +44,9 @@ The objectives of the National Household Travel Survey 2013 have been formulated
 10. To measure usage of non-motorised transport by households
 11. To assess accessibility of public transport for people with disabilities and the elderly in the communities.
 
-##Variables
+## Variables
 
-*Person data file:*
+### Person data file
 
 - Unique number (UQNO): Unique Household Identifier. This is the unique household identifier, which can be used to link data from this file with data for the same household from other files. This is a 19-digit number that is made up of the PSU number, dwelling unit number, Household number and questionnaire number.
 
@@ -645,8 +645,8 @@ Mode of travel used to educational institution: This question is on the usual mo
 
 - Mode1 to educational institution cost (Q314MODE1, Q314MODE2, Q314MODE3)
 	+ Valid range: 1 – 5610
-	+ Not applicable = 888888 
-	+ Unspecified = 888888 
+	+ Not applicable =  888888 
+	+ Unspecified = 999999 
 
 - Have a job (Q41WORK): This question is applicable to members who are age 15 years and above. It is meant to identify persons who are currently employed and unemployed or temporally absent from their income earning activity. This question requires the respondent to identify whether or not they have a formal work activity or informal work activity. Formal sector employment is where the employer (institution, business or private individuals) is registered for VAT to perform the activity. For example, nurse, mine worker, teacher, etc. who works in the formal institution, for example, government hospital.
 Informal sector employment is where the employer is not registered for VAT. For example, domestic work, street trading, taxi driver, etc. The main job/ business would be the one where the respondent spends the most time at.
@@ -729,5 +729,581 @@ Place of workplace: This question is only applicable to those who answered “Ye
 	+ Valid range: 00:00 – 24:00
 	+ Not applicable = 88:88
 	+ Unspecified = 99:99
+
+- Walk to work (Q411WLK): This is a filter question which focuses on workers who travelled to work on the travel day, on whether they usually walk all the way to the workplace or not. The aim of this question is to establish the infrastructure demands for people who are walking all the way to the place of work, e.g. pedestrian crossing bridges over highways and railroads, walkways in cities.
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+
+- Cycle to work (Q412CYC): This question is on workers who travelled to work on the travel day, focusing on whether they cycle all the way to the workplace. The aim of this question is to establish the infrastructure demands for people who are cycling all the way to the place of work, e.g. cycling lanes.
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+
+- Drive to work (Q413DRIV): This question is on workers who travelled to work on the travel day, focusing on whether they drive all the way to the workplace. The aim of this question is to establish the usage of private vehicle to the place of work.
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+
+- Type of vehicle (Q414TYPVEH)
+	+ Truck/Lorry = 1
+	+ Car/ Bakkie = 2
+	+ Motor cycle/Scooter = 3
+	+ Minibus (private) = 4
+	+ Other = 5
+
+- Need vehicle (Q415VEH): This question is on workers who travelled to work on the travel day and drive their own vehicles. However, the interest is on whether they need their vehicles for work purposes. The aim of this question is to establish the traffic volume outside peak hours. This question refers to using a vehicle to take people or objects to some location for business purposes. This question does not include driving to the place of work and from work to home, but only to using the vehicle as part of (or during) work.
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Drop/pick passengers to work (Q416PICKPAS) and to home (Q417DROPPAS): This question is on workers who travelled to work on the travel day and drive their own vehicles. However, the interest is on whether they have to drop or pick up other passengers on their way to work. The aim of this question is to determine the occupancy rate of each vehicle, e.g. promote formation of lift clubs to reduce congestion. This includes all household members dropping children at crèche, school, etc.
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Vehicle costs to work (Q418COST): This question is on workers who travelled to work on the travel day and drive their own vehicles. However, the interest is on the cost when using their vehicles. The purpose of this question is to determine the transport costs incurred by the household member in using private transport to get to the place of work. The amount given is rounded off to the nearest rand.
+	+ Valid range: 0 – 306288
+	+ Not applicable = 88
+
+- Payment method (Q419PAY): As indicated in the previous question, Q4.18, the interest in this question is on classification of the cost on mode of travel. Indicate how this payment was made for this type of transport. That means the cost that is given, is it per single trip, per week, etc. 
+	+ Per single trip = 1
+	+ Per return trip = 2
+	+ Per week = 3
+	+ Per month = 4
+	+ Not applicable / I do not pay = 5
+	+ Do not know = 6
+	+ Not applicable = 7
+	+ Unspecified = 9
+
+- Change transport (Q420CHANG): This question is on workers who travelled to work on the travel day, and usually change the mode of travel on the way to the workplace. The aim of this question is to ascertain the extent to which different modes of travel are used to reach the place of work. The question is aimed at people that didn’t drive all the way to work.
+
+
+
+Mode of travel to workplace. This question is on workers who travel to work and usually change the mode of transport on the way to the workplace. There should be a response on the first, second, third and fourth mode of travel, otherwise it is not applicable. The instruction from the question is to exclude walks between the modes of travel used when going to work. Moreover, these modes should be in order in which they are used. The aim of this question is to determine the different modes of travel that are mostly used by people when going to the place of work. The type of transport used first will be indicated as Mode 1, the second as Mode 2, and so on.
+
+- Mode 1, 2, 3, 4 to work (Q421Mode1, Q421Mode1, Q421Mode3, Q421Mode3): 
+	+ Train (Metrorail) = 1
+	+ Long distance train/Shosholoza = 2
+	+ Bus = 3
+	+ BRT bus/IRT bus = 4
+	+ Metered taxi = 5
+	+ Commuter/short-distance/ local minibus taxi = 6
+	+ Long-distance minibus taxi = 7
+	+ Sedan taxi/ four plus one = 8
+	+ Bakkie taxi/ tambai = 9
+	+ Car/ Bakkie passenger = 10
+	+ Car/ Bakkie driver = 11
+	+ Truck/Lorry/tractor/trailer passenger = 12
+	+ Truck/Lorry tractor/trailer driver = 13
+	+ Company vehicle = 14
+	+ Scooter/motorcycle = 15
+	+ Bicycle = 16
+	+ Animal drawn transport/vehicle = 17
+	+ Boat/ ship = 18
+	+ Aircraft = 19
+	+ Gautrain = 20
+	+ Walking all the way = 21
+	+ Other (specify) = 22
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+Cost of modes of travel: This question is on workers who travel to work and usually change the mode of transport on the way to the workplace. The purpose of this question is to determine the transport costs incurred by the household member in using different modes of travel to get to the place of work.
+
+- Mode 1,2,3,4 to work cost (Q422MODE1, Q422MODE2, Q422MODE3, Q422MODE4)
+	+ Valid range: 1 – 5610
+	+ Not applicable = 888888 
+	+ Unspecified = 99999 
+
+- Payment method for mode 1 (Q423MODE1, Q423MODE2, Q3423MODE3)
+	+ Per single trip = 1
+	+ Per return trip = 2
+	+ Per week = 3
+	+ Per month = 4
+	+ Not applicable / I do not pay = 5
+	+ Do not know = 6
+	+ Not applicable = 7
+	+ Unspecified = 9
+
+- Cash from employer (Q424EMPLY): This question is on workers who travel to work and usually change the mode of transport on the way to the workplace. The interest in this question is on whether the employers subsidise household members on their daily transport costs either in the form of cash or tickets. 
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Total cash from employer (Q425TotCash): This question is on workers who travel to work and usually change the mode of transport on the way to the workplace and answered with a “Yes” in Q4.26. For those who are subsidised, the interest is on the total sum worth of the given cash or tickets. The amount is rounded off to the nearest rand.
+	+ Valid range: 5 – 7602
+	+ Not applicable = 888888
+	+ Unspecified = 999999
+
+- Minutes waiting for first transport (Q427WFIRST)
+	+ Valid range: 0 - 120
+	+ Not applicable = 888
+	+ Do not know = 998
+	+ Unspecified = 999
+
+- Minutes walking at end of trip (Q428WEND): This question is on workers who travel to work and usually change the mode of transport on the way to the workplace. The interest in this question is minutes usually taken to walk at the end of trip to reach the work place. The aim of this question is to establish if there will be a need for feeder transport to the destination point.
+	+ Valid range: 0 - 120
+	+ Not applicable = 888
+	+ Do not know = 998
+	+ Unspecified = 999
+
+- Business Trips (Q51BUSNT): This question is on all the household members who are 15 years and above, on whether they undertook any business trips longer than 20 km within RSA in the past calendar month.
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+
+- Number of Business Trips (Q52TOTTRPS)
+	+ Valid range: 01 – 60
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Mode of Travel for business trip(Q53TYPTRNS): The question will capture the mode of transport used for the last business trip undertaken and if more than one mode have been used, we record the transport mode used for the longest part of the trip.
+	+ Train (Metrorail) = 1
+	+ Long distance train/Shosholoza = 2
+	+ Bus = 3
+	+ BRT bus/IRT bus = 4
+	+ Metered taxi = 5
+	+ Commuter/short-distance/ local minibus taxi = 6
+	+ Long-distance minibus taxi = 7
+	+ Sedan taxi/ four plus one = 8
+	+ Bakkie taxi/ tambai = 9
+	+ Car/ Bakkie passenger = 10
+	+ Car/ Bakkie driver = 11
+	+ Truck/Lorry/tractor/trailer passenger = 12
+	+ Truck/Lorry tractor/trailer driver = 13
+	+ Company vehicle = 14
+	+ Scooter/motorcycle = 15
+	+ Bicycle = 16
+	+ Animal drawn transport/vehicle = 17
+	+ Boat/ ship = 18
+	+ Aircraft = 19
+	+ Gautrain = 20
+	+ Walking all the way = 21
+	+ Other (specify) = 22
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+
+- Cost of business trip (Q54TOTCST): he aim of the question is to determine transport costs incured on the longest part of the last business trip. This question requires cost to the destination and back.
+	+ Valid range: 1 - 27000
+	+ Not applicable = 888888
+	+ Unspecified = 999999
+
+- Suburb/Town/Place name (Q55APLC): The purpose of the question is to find out about the place where the educational institutions are situated. This is mainly on the educational institution areas for those who are currently attending classes and distance learning.
+
+- Province (Q55bProvv)
+	+ Western Cape = 1
+	+ Eastern Cape = 2
+	+ Northern Cape = 3
+	+ Free State = 4
+	+ KwaZulu-Natal = 5
+	+ North West = 6
+	+ Gauteng = 7
+	+ Mpumalanga = 8
+	+ Limpopo = 9
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- District Code (Q55CDISTRCT): Please refer to the code list.
+
+- Travel Analysis Zone (Q55dTAZCODE_IMP)
+	+ Valid Range: 0042 – 9048
+	+ Unspecified: 9999
+
+
+- Day trips (Q61DAYTRPS): The purpose of this question is to find out of any day trips taken by the household members other than for education work and business purposes in the past twelve months. 
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+
+- Main Purpose for day trip (Q62MAINP): The aim of this question is to determine the different reasons why people travel, other than educational, work and business purposes. This is the purpose in the absence of which the trip would not have been made or the given destination would not have been visited.
+	+ Home for leisure/holiday 
+	+ Leisure/ holiday
+	+ Shopping – business
+	+ Shopping – personal
+	+ Sporting – spectator
+	+ Sporting – participant
+	+ Home to visit friends and/or family 
+	+ Visit friends and/or family
+	+ Funeral
+	+ Medical
+	+ Wellness (e.g. spa, health farm) 
+	+ Religious
+	+ Wedding
+	+ Other, (Specify) 
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Mode of travel for day trip(Q63MAINM): This refers to the main type of transport used to reach the main destination and does not refer to the transport used at the destination (which may be different).The question will capture the mode of transport used for the recent day trip undertaken and if more than one mode have been used, we record the transport mode used for the longest part of the trip.
+
+	+ Train (Metrorail) = 1
+	+ Long distance train/Shosholoza = 2
+	+ Bus = 3
+	+ BRT bus/IRT bus = 4
+	+ Metered taxi = 5
+	+ Commuter/short-distance/ local minibus taxi = 6
+	+ Long-distance minibus taxi = 7
+	+ Sedan taxi/ four plus one = 8
+	+ Bakkie taxi/ tambai = 9
+	+ Car/ Bakkie passenger = 10
+	+ Car/ Bakkie driver = 11
+	+ Truck/Lorry/tractor/trailer passenger = 12
+	+ Truck/Lorry tractor/trailer driver = 13
+	+ Company vehicle = 14
+	+ Scooter/motorcycle = 15
+	+ Bicycle = 16
+	+ Animal drawn transport/vehicle = 17
+	+ Boat/ ship = 18
+	+ Aircraft = 19
+	+ Gautrain = 20
+	+ Walking all the way = 21
+	+ Other (specify) = 22
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Cost of day trip (Q64COSTDES)
+	+ Valid range: 1 - 27000
+	+ Not applicable = 888888
+	+ Unspecified = 999999
+
+- Overnight trips (Q65OVERN): The aim of this question is to establish whether people have taken trips in the past twelve months, other than educational, work and business purposes. It should be a place where you do not own or rent dwelling unit/s
+	+ Yes = 1
+	+ No = 2
+	+ Not applicable = 8
+
+- Frequency of Overnight Trips (Q66OFTEN)
+	+ Weekly = 1
+	+ One to 3 times in a month = 2
+	+ Every two or three months = 3
+	+ Per month = 4
+	+ One to three times in a year = 5
+	+ Not applicable = 8
+	+ Unspecified = 9
+
+- Main purpose for overnight trip (Q67MAINP)
+	+ Home for leisure/holiday 
+	+ Leisure/ holiday
+	+ Shopping – business
+	+ Shopping – personal
+	+ Sporting – spectator
+	+ Sporting – participant
+	+ Home to visit friends and/or family 
+	+ Visit friends and/or family
+	+ Funeral
+	+ Medical
+	+ Wellness (e.g. spa, health farm) 
+	+ Religious
+	+ Wedding
+	+ Other, (Specify) 
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+-Mode of travel for overnight trip (Q68TYPTRANS)
+	+ Train (Metrorail) = 1
+	+ Long distance train/Shosholoza = 2
+	+ Bus = 3
+	+ BRT bus/IRT bus = 4
+	+ Metered taxi = 5
+	+ Commuter/short-distance/ local minibus taxi = 6
+	+ Long-distance minibus taxi = 7
+	+ Sedan taxi/ four plus one = 8
+	+ Bakkie taxi/ tambai = 9
+	+ Car/ Bakkie passenger = 10
+	+ Car/ Bakkie driver = 11
+	+ Truck/Lorry/tractor/trailer passenger = 12
+	+ Truck/Lorry tractor/trailer driver = 13
+	+ Company vehicle = 14
+	+ Scooter/motorcycle = 15
+	+ Bicycle = 16
+	+ Animal drawn transport/vehicle = 17
+	+ Boat/ ship = 18
+	+ Aircraft = 19
+	+ Gautrain = 20
+	+ Walking all the way = 21
+	+ Other (specify) = 22
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+- Cost of overnight trip (Q69COST)
+	+ Valid range: 1 - 80000
+	+ Not applicable = 888888
+	+ Unspecified = 999999
+
+- Cost of trip to return to residence (Q611COST)
+	+ Valid range: 1 - 80000
+	+ Not applicable = 888888
+	+ Unspecified = 999999
+
+Derived variables
+
+- Age group 1 (Age_grp1)
+	+ 00–04 years = 1
+	+ 05–09 years = 2
+	+ 10–14 years = 3
+	+ 15–19 years = 4
+	+ 20–24 years = 5
+	+ 25–29 years = 6
+	+ 30–34 years = 7
+	+ 35–39 years = 8
+	+ 40–44 years = 9
+	+ 45–49 years = 10
+	+ 50–54 years = 11
+	+ 55–59 years = 12
+	+ 60–64 years = 13
+	+ 65–69 years = 14
+	+ 70–74 years = 15
+	+ 75+ = 16
+
+- Age group 2 (Age_grp2)
+	+ 00–14 years = 1
+	+ 15–34 years = 2
+	+ 35–65 years = 3
+	+ 65+ = 4
+
+- Mainmode to Educational Institution , employment (Mainmode_Newq312, Mainmode_q421) If only one mode of travel was used on the travel day this mode became the main mode. However if more than one mode was used, the main modes determined using the hierarchy: train, bus, taxi, car/bakkie/truck/lorry driver, car/bakkie/truck/lorry passenger, walking ll the way and finally other.
+	+ Train  = 1
+	+ Bus = 2
+	+ Taxi = 3
+	+ Car/Bakkie/Truck/Lorry passenger = 4
+	+ Car/Bakkie/Truck/Lorry  driver = 5
+	+ Walking all the way = 6
+	+ Other = 7
+	+ Not applicable = 88
+	+ Unspecified = 99
+
+
+- Total time to educational institution, place of employment (Q3total_time, Q4total_time)
+	+ Valid range:1 – 400
+	+ Not applicable = 888
+	+ Unspecified = 999
+
+- Total cost to educational institution, place of employment, overnight (Q313TOTCST, Q423TOTCST,Q69TOTCST) 
+
+	+ Valid range:1 – 400
+	+ Not applicable = 888
+	+ Unspecified = 999
+
+- UN Disability (undisab): Disability as per Q11ASEE to Q11FCOMM. If an individual has 'Some difficulty' (2) for two or more of the six categories, then they are disabled. If an individual has 'A lot of difficulty' (3) or is 'Unable to do' (4) so for one or more categories, they are classified as disabled.
+
+	+ Not disabled = 0
+	+ Disabled = 1
+	+ = 8
+	+ Unspecified = 9
+
+- Disability (disab): Disability as per Q11ASEE to Q11FCOMM. If an individual has 'Some difficulty' (2) or 'A lot of difficulty' (3) or is 'Unable to do' (4) so for one or more categories, they are classified as disabled.
+	+ Not disabled = 0
+	+ Disabled = 1
+	+ = 8
+	+ Unspecified = 9
+
+
+- Geographical location (Type): Note to users
+(@425 1.)
+This variable is based on the Census 2001 typology. This typology was used to classify all Enumeration areas (EA) and per implication the NHTS sampled PSUs into one of four classes namely: urban formal, urban informal, tribal area and rural formal areas. Firstly these four classes were combined into two classes namely urban (urban formal and urban informal) and rural (tribal area and rural formal). Once classified into two groups a set of new classifications based on a combination of the Municipal Demarcation Board’s categorisation of metros and non-metros were applied to the urban category, resulting in three distinct categories: metro, urban (all non-metro urban) and rural.
+	+ Metro = 1
+	+ Urban = 2
+	+ Rural = 3
+
+- Household income Quintiles (quintile): Total monthly household income is used to calculate income quintiles i.e. the 20% of households with the lowest incomes(quintile 1), those between 20 and 40%(quintile 2), households between 40 and 60% (quintile 3), those between 60 and 80% (quintile 4) and finally the 20% of households who earn the highest incomes(quintile 5).
+	+ Lowest income quintile = 1
+	+ Quintile 2 = 2
+	+ Quintile 3 = 3
+	+ Quintile 4 = 4
+	+ Highest income Quintile = 5
+
+- Total monthly household income (totmhinc)
+Total monthly household income is calculated by adding the monthly earnings per individual in the household as well as the total grant income for the household. Total grant income for the household is obtained by using the gazetted value for each grant as the guideline.
+
+- Total monthly salary (Msal)
+Earnings as reported in Q4.6, Q4.7 and Q4.8 were standardised to the equivalent of a monthly income per person. Categorical data for Q4.8 was converted into a median income for that income range based on the 2011 Income and Expenditure survey. Missing values for individuals who are working were then imputed using hotdecks based on the variables: Geographic location (type),population group (race), broad age group (age_grp2) and household monthly expenditure category (Q72exp).
+	+ Valid range 50 – 500000
+	+ Not applicable = 888888888
+
+- Total monthly salary (Oldmsal): Earnings as reported in Q4.6, Q4.7 and Q4.8 were standardised to the equivalent of a monthly income per person. Categorical data for Q4.8 was converted into a median income for that income range based on the 2011 Income and Expenditure survey. No missing values were imputed.
+
+- Weight (FULL_CALWGT)
+
+### General Household Information datafile
+
+- Unique number (UQNO): Unique Household Identifier
+
+- Province (Pr_code)
+	+ Western Cape = 1
+	+ Eastern Cape = 2
+	+ Northern Cape = 3
+	+ Free State = 4
+	+ KwaZulu Natal = 5
+	+ North West = 6
+	+ Gauteng = 7
+	+ Mpumalanga = 8
+	+ Limpopo = 9
+
+- Main Dwelling type (Q71MAIND)
+	+ 01 = Dwelling/house or brick/concrete block structure on a separate stand or yard or on farm 
+	+ 02 = Traditional dwelling/hut/structure made of traditional materials
+	+ 03 = Flat or apartment in a block of flats
+	+ 04 = Cluster house in complex
+	+ 05 = Town house (semi-detached house in complex) 06 = Semi-Detached house
+	+ 07 = Dwelling/house/flat/room in backyard
+	+ 08 = Informal dwelling/shack in backyard
+	+ 09 = Informal dwelling/shack Not in backyard, e.g. in an informal/squatter settlement or on farm
+	+ 10 = Room/ flat let on a property or a larger dwelling/ servants’ quarters/granny flat
+	+ 11 = Caravan/tent 12 = Other
+	+ 99 = Unspecified
+
+- Total Household Expenditure (Q72EXP)
+This refers to the total amount spent by the household in the last month. Including money spent on food, clothing, transport, rent and rates, alcohol and tobacco, school fees, entertainment and any other expenses.
+	+ 01 = R0
+	+ 02 = R1 – R199
+	+ 03 = R200 – R399
+	+ 04 = R400 – R799
+	+ 05 = R800 – R1 199 06 = R1 200 – R1 799 07 = R1 800 – R2 499
+	+ 08 = R2 500 – R4 999 09 = R5 000 – R9 999 10 = 10 000 or more 11 = Do not know
+	+ 12 = Refuse
+	+ 99 = Unspecified
+
+Household Sources of income
+
+
+- Salaries/wages/commission (Q73SAL)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Income from a business (Q73BUSN)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Remittances/ including child maintenance (Q73REM)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Pensions (Q73PEN)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Grants (Q73GRANT)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Sales of farming products and services (Q73AGRIC)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Income from UIF (Q73UIF)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- Other income sources e.g. rental income, interest (Q73OTHR)
+	+ Yes = 1
+	+ No = 2
+	+ Unspecified = 9
+
+- No income (Q73NONE)
+	+ No = 2
+	+ Unspecified = 9
+
+- Main Source of Income(Q74MAINN): This question is applicable only to households that have source of income. The aim of this question is to establish the income source that provides the most money for the household.
+
+	+ 1 = Salaries/wages/commission
+	+ 2 = Income from a business
+	+ 3 = Remittances/ including child maintenance
+	+ 4 = Pensions
+	+ 5 = Grants
+	+ 6 = Sales of farming products and services
+	+ 7 = Income from UIF
+	+ 8 = other income sources e.g. rental income, interest 99 = Unspecified
+
+- Income from remittances(Q75REM)
+
+	+ Valid Range: 0-20000
+	+ 888888 = Not applicable
+	+ 999999 = Unspecified
+
+- Income from pensions or retirement(Q76PEN)
+
+	+ Valid Range: 0-20000
+	+ 888888 = Not applicable
+	+ 999999 = Unspecified
+
+- Number of Bicycles(Q77NOBIC): This question aims to establish the extent of usage of non-motorised transport. This question capture number of bicycles in a running order which the household owns.
+
+	+ Valid Range: 0-10
+	+ 99 = Unspecified
+
+- Number of Animal drawn vehicle(Q78ANIM) This question aims to establish the extent of usage of non-motorised transport. This question captures number of animal draw vehicles which the household owns.
+
+	+ Valid Range: 0-10
+	+ 99 = Unspecified
+
+
+- Animals owned (Q79OWNANIM): This question aims to find out if animals that can pull animal drawn vehicles are owned by the household.
+
+Access to motor vehicle: This question is on motorised vehicles owned by households. Similar to the previous question these items are in running order. It should also be emphasized to the respondent that these motorised vehicles should only be available for private use. It is also important to note that tractors are excluded in this section. For any other motorised vehicles that are not given in this question there is provision for it in the last category. The instruction to the enumerator is to determine whether these motorised vehicles benefit the current household, such as having access to them when need be, otherwise they are not considered.
+
+- Q710MOTOR: Motorcycle or scooter
+- Q710CAREMP: Car/Bakkies/Station wagons/4x4s owned by employer/company
+- Q710CAREHH: Car/Bakkies/Station wagons/ 4x4s owned by the household
+- Q710CARVFR: Car/Bakkies/Station wagons/ 4x4s owned by relatives / friends
+- Q710MBUS: Minibus/Kombis
+- Q710TRUCK: Trucks
+- Q710OTHR: Other, Specify
+
+	+ Valid Range: 0-10
+	+ 99 = Unspecified
+
+- Access to facilities: 
+This question is applicable to all households regarding usual means of transport to various facilities. The instruction to the enumerator is to ask for the nearest facility using the usual means of transport even in cases whereby more than one means is applicable. Similar to the previous question the instruction to the enumerator is to ask the respondent about the nearest facility regardless of whether they are making use of it or not. All the given categories must be asked to indicate the type of transport the household use to access the given facilities. This question also includes usual time taken to all these facilities by households when getting to these facilities.
+
+- Q711SHOP: Food or grocery shops
+- Q711HEALER: Traditional healer
+- Q711CHURCH: Church
+- Q711MEDSERV: Medical services
+- Q711POST: Post office
+- Q711WFARE: Welfare office
+- Q711POLCE: Police station
+- Q711MUNIP: Municipal office
+- Q711TRIBAL: Tribal authority
+- Q711FINSERV: Financial services banks
+	
+	+ 01= Walk
+	+ 02 =Train
+	+ 03 =Bus
+	+ 04 = Minibus taxi/bakkie taxi/sedan taxi 05 =Metered Taxi
+	+ 06 =Car/ Bakkie
+	+ 07 = Truck/ Lorry
+	+ 08 =Tractor/ Trailer
+	+ 09 = Motorcycle/ Scooter
+	+ 10 = Bicycle
+	+ 11 = Animal transport
+	+ 12 = Do not need to go there 99= Unspecified
+
+- Q711SHPTIME
+- Q711SHPTIME
+- Q711HETIME
+- Q711CHTIME
+- Q711MEDTIME
+- Q711PTIME
+- Q711WTIME
+- Q711POLTIME
+- Q711MUNTIME
+- Q711TRTRITIME
+- Q711FINTIME
+
+	+ Valid range: 1 – 300
+	+ Not applicable = 888
+	+ Unspecified = 999
+	+ Do know know = 998
+
+
 
 
