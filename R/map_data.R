@@ -1,28 +1,24 @@
 ###################                                             ###############
 ###################                                             ###############
-                                # NHTS 2014#
+                                # MAP DATA#
 ###################                                             ###############
 ###################                                             ###############
-
-
-# Author: Pelayo G. Arbués <gonzalezpelayo@gmail.com>
-
 
 #                         + LOAD REQUIRED PACKAGES +
 #Require packages
-packages <- c("foreign", "data.table")
+packages <- c("maptools", "rgdal", "ggplot2")
 sapply(packages, require, character.only=TRUE, quietly=TRUE)
 
 
-#                               READ DATA
-person.df <- read.dta("./Data/stata/nhts-2013-person-v1-20140718.dta")
-house.df <- read.dta("./Data/stata/nhts-2013-house-v1-20140718.dta")
 
-#Merge data
-dt <- data.table(merge(person.df, house.df, by=c("UQNO"),all=TRUE))
+### Map 
 
-names(dt) <- tolower(names(dt))
+taz      <- readOGR(dsn="./Data/geo",
+                      layer="TAZ2011_NHTS25JUL2014") 
 
+map <- fortify(taz)
 
-
-
+gg <- ggplot() + geom_map(data=map,
+                          map=map,
+                          aes(x=long, y=lat, map_id=id, group=group),
+                          fill="white", color="black", size=0.15)

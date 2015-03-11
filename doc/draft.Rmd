@@ -1,0 +1,14 @@
+---
+title: "Untitled"
+---
+
+
+```{r, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
+setwd("/Users/pelayogonzalez/SouthAfrica_mobility")
+bib <- read.bibtex("./doc/mobility.bib")
+source("./R/read_munge.R", echo=FALSE)
+```
+
+
+
+

@@ -1,0 +1,106 @@
+\documentclass[preprint,review,authoryear, 3p,times]{elsarticle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{transparent}
+\usepackage{epstopdf}
+\usepackage[authoryear]{natbib}
+\usepackage{tabularx}
+
+\begin{document}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                        FRONTMATER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frontmatter}
+
+\title{South Africa National Travel Survey 2013}
+\author[ovd]{Pelayo Gonz\'{a}lez \corref{cor1}\fnref{label}}
+\address[ovd]{Facultad de Econom\'{i}a y Empresa, Avda del Cristo s/n. 33006 Oviedo - Spain}
+\fntext[label]{Department of Economics}
+
+\begin{abstract}
+
+\end{abstract}
+
+\begin{keyword}
+Mobility \sep Disable 
+\end{keyword}
+
+\end{frontmatter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                        INTRO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section{Introduction}
+
+\citep{Mercado2010}
+
+
+\section{data}
+
+<<read_data, warning=FALSE, echo=FALSE,message=FALSE, results='hide'>>= 
+
+#Copy and paste read_munge below:
+
+packages <- c("foreign", "data.table", "dplyr", "knitr", 
+             "reporttools", "Hmisc")
+sapply(packages, require, character.only=TRUE, quietly=TRUE)
+#                               READ DATA
+person.df <- read.dta("/Users/pelayogonzalez/SouthAfrica_mobility/Data/stata/nhts-2013-person-v1-20140718.dta")
+house.df <- read.dta("/Users/pelayogonzalez/SouthAfrica_mobility/Data/stata/nhts-2013-house-v1-20140718.dta")
+#Merge data
+dt <- data.table(merge(person.df, house.df, by=c("UQNO"),all=TRUE))
+names(dt) <- tolower(names(dt))
+#                               MUNGE
+
+#Create an unique identifier for person combining  uqno and personno
+dt$id <- paste(dt$uqno,dt$personno)
+length(unique(dt$id))
+
+#Subset dt with those variables likely to be used.
+dt2 <- dt %>%
+        select(uqno:f_havelicence,age_grp1:oldmsal, q22trip)
+
+dt.nominal <- dt %>%
+        select(race, gender, f_havelicence,age_grp1,q31hiedu,q41work,
+               undisab, type, quintile.x)
+@
+
+
+<<desc_data,  keep.source = TRUE, echo = FALSE, message=FALSE, results='asis'>>= 
+tableNominal(dt.nominal,
+             cap = "Sample characteristics",
+             lab = "tab: samplechar",
+             cumsum=FALSE)
+@
+
+
+
+\section*{Acknowledgements}
+This research was partially supported by a Severo Ochoa grant (Ref: BP10-088), which is funded by the government of Principado de Asturias, awarded to the primary author. We would like to thank the editors and anonymous reviewers for their valuable support and comments.
+
+
+\newpage 
+\bibliographystyle{plainnat}
+\bibliography{/Users/pelayogonzalez/SouthAfrica_mobility/doc/mobility.bib}
+
+\end{document}
+
+
