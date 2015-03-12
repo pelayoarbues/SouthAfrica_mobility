@@ -24,7 +24,7 @@ sapply(packages, require, character.only = TRUE, quietly = TRUE)
 person.df <- read.dta("./Data/stata/nhts-2013-person-v1-20140718.dta")
 house.df <- read.dta("./Data/stata/nhts-2013-house-v1-20140718.dta")
 #Merge data
-dt <- data.table(merge(person.df, house.df, by = c("UQNO"),all = TRUE))
+dt <- merge(person.df, house.df, by = c("UQNO"),all = TRUE)
 names(dt) <- tolower(names(dt))
 
 ################################################################################
@@ -225,7 +225,6 @@ dt$incomesour <- factor(dt$incomesour,
 
 #Create motoveh, a variable that takes value 1 if the household has access to a private vehicle
 #                 motor <- grep("^q710", names(dt), value=TRUE) #to find colums starting with q710
-rm(motor)
 dt$motorveh <- rep(0,nrow(dt))
 dt$motorveh[(dt$q710motor != 0 & dt$q710motor != 99) | 
         (dt$q710caremp != 0 & dt$q710caremp != 99) |
@@ -236,8 +235,8 @@ dt$motorveh[(dt$q710motor != 0 & dt$q710motor != 99) |
         (dt$q710othr != 0 & dt$q710othr != 99)] <- 1
 
 #Check the result of the previous operation
-dtprueb <- dt %>%
-select (motorveh,contains("q710"))
+# dtprueb <- dt %>%
+# select (motorveh,contains("q710"))
 
 
 ################################################################################
@@ -245,48 +244,17 @@ select (motorveh,contains("q710"))
 ################################################################################
 sel <- grep("^q24", names(dt)) #Find columns index starting with q24
 values <- 88 #Unspecified and missing values to replace
+dt[ ,sel][dt[ ,sel] == 88] <- NA
 
 
-
-
-dt2 <- dt %>%
-        select(uqno,contains("q24"))
-sel2 <- grep("^q24", names(dt2))
-dt2$duplicated <- dt2$q24take
-
-
-
-dt2[ ,2:14][dt2[ ,2:14] == 88] <- NA
-
-data[ , 2:3][is.na(data[ , 2:3] ) ] = 0 
-
-dt[sel][dt[sel] == 88] <- NA
-df[,var][df[,var] == 5] <- NA
-dt[df$ART==999, 4:10][df[df$ART==999,4:10] == 99] <- NA
-dt[sel][dt[sel] == 88] <- NA
-
-
-A = c(1:5) 
-B = c(6, 7, 88, 88, 88) 
-C = c(88, 88, 13, 14, 15) 
-D = c(16:20) 
-E = c(21, 88, 88, 88, 25) 
-data = as.data.frame ( cbind ( A, B, C, D, E ) ) 
-data[ , 2:3][data[ , 2:3] == 88] = NA 
-
-
-dat <- data.table(data)
-dat[ , 2:3][dat[ , 2:3] == 88] = NA 
-
+#Compute total number of trips
+dt$ntrips <- rowSums(dt[,sel]) 
 
 
 
 ################################################################################
 #                               Create accessibility variable
 ################################################################################
-
-dt$totntrips <- rep(0,nrow(dt))
-dt$totntrips <- dt$q24usulwrk +  
 
 
 
@@ -318,7 +286,8 @@ dt2 <- dt %>%
                incomesour, #main source of income
                motorveh, #Owns or have access to a motor vehicle (1), no access (0)
                tazcode, #Travel analysis zone code
-               pr_code.x # Province code
+               pr_code.x, # Province code
+                ntrips
                #time to public services
                )
 
