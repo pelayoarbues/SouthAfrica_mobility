@@ -251,14 +251,83 @@ dt[ ,sel][dt[ ,sel] == 88] <- NA
 dt$ntrips <- rowSums(dt[,sel]) 
 
 
+################################################################################
+#          Dummy variables of reasons to trip
+################################################################################
+#Work (1 if trip to work >0, 0 otherwise)
+
+#Educa (1 if trip to educative center >0, 0 otherwise)
 
 ################################################################################
-#                               Create accessibility variable
+#          Mode of travel used in the travel day
 ################################################################################
+sel <- grep("^q25", names(dt), value=T) #Select variables containing number of trips by mode
+
+#Create categorical variable indicating: 1 private vehicle, 2 walking, 3 bike, 4 public transport...
+#This variable will collect the main mode (that mode that outnumbers the rest)
+
+
+################################################################################
+#                                Employment status
+################################################################################
+dt$laborstat <- rep(NA,nrow(dt))
+dt$q41work2 <- as.numeric(dt$q41work) #Convert to numeric for easy access
+dt$q42ynotwrkk2 <- as.numeric(dt$q42ynotwrkk) #Convert to numeric for easy access
+
+dt$laborstat[(dt$q41work2 == 1 | dt$q41work2 == 2)] <- 1 #Working
+dt$laborstat[(dt$q41work2 == 3 & (dt$q42ynotwrkk2 == 8 | 
+                                  dt$q42ynotwrkk2 == 7))] <- 1 #Working (on leave or sick)
+dt$laborstat[(dt$q41work2 == 3 & dt$q42ynotwrkk2 == 1)] <- 2 #Student
+dt$laborstat[(dt$q41work2 == 3 & dt$q42ynotwrkk2 == 2)] <- 3 #Housewife
+dt$laborstat[(dt$q41work2 == 3 & dt$q42ynotwrkk2 == 3)] <- 4 #Pensioner
+dt$laborstat[(dt$q41work2 == 3 & (dt$q42ynotwrkk2 == 4 |
+                                dt$q42ynotwrkk2 == 5   |
+                                dt$q42ynotwrkk2 == 6 |
+                                dt$q42ynotwrkk2 == 11))] <- 5 #Unemployed
+
+#Alternatively I build a working activity in the travel day
+dt$workact <- rep(NA,nrow(dt))
+dt$q41work2 <- as.numeric(dt$q41work) #Convert to numeric for easy access
+dt$q42ynotwrkk2 <- as.numeric(dt$q42ynotwrkk) #Convert to numeric for easy access
+
+dt$workact[(dt$q41work2 == 1 | dt$q41work2 == 2)] <- 1 #Working
+dt$workact[(dt$q41work2 == 3 & dt$q42ynotwrkk2 == 1)] <- 2 #Student
+dt$workact[(dt$q41work2 == 3 & dt$q42ynotwrkk2 == 2)] <- 3 #Housewife
+dt$workact[(dt$q41work2 == 3 & (dt$q42ynotwrkk2 == 3 | 
+                                dt$q42ynotwrkk2 == 4 |
+                                dt$q42ynotwrkk2 == 5 |
+                                dt$q42ynotwrkk2 == 6 |
+                                dt$q42ynotwrkk2 == 7 |
+                                dt$q42ynotwrkk2 == 8 |
+                                dt$q42ynotwrkk2 == 9 |
+                                dt$q42ynotwrkk2 == 11))] <- 4 #Not working
+
+
+dt2 <- dt %>%
+        select(uqno, q41work, q42ynotwrkk, laborstat, workact)
+################################################################################
+#                               Acc_i = (Sum[t]/n)
+################################################################################
+sel <- grep("^q711(.*)time$", names(dt), value=T) #Select variables with time to facilities
+dt[ ,sel][dt[ ,sel] == 888] <- NA #Convert "Not applicable" responses to NA
+dt[ ,sel][dt[ ,sel] == 998] <- NA #Convert "Unspecified" responses to NA
+dt[ ,sel][dt[ ,sel] == 999] <- NA #Convert "Do not know" responses to NA
+
+
+dt$timesum <- rep(NA,nrow(dt)) #Create accessibility variable in dt
+dt$timesum <- rowSums(dt[,sel], na.rm=TRUE) #Sum times to public serv if not NA
+dt["timesum"][dt["timesum"] == 0] <- NA #Replace 0 with NA
+#Count number of columns where times are not na
+dt$nrecord <- rowSums(!is.na(dt[ ,sel]))
+#Compute average times
+dt$avgtime <- (dt$timesum/dt$nrecord)
 
 
 
-
+        dt2 <- dt %>%
+        select(timesum,nrecord,avgtime, q711shptime,q711oshptime,q711hetime, 
+               q711chtime,q711medtime,q711ptime,q711wtime,
+               q711poltime,q711muntime,q711fintime)
 
 ################################################################################
 #                               SELECT variables
@@ -284,10 +353,11 @@ dt2 <- dt %>%
                f_area, #Type of area (metro, urban, rural)
                quintile.y, #Income quintiles
                incomesour, #main source of income
+                laborstat, #labor status
                motorveh, #Owns or have access to a motor vehicle (1), no access (0)
                tazcode, #Travel analysis zone code
                pr_code.x, # Province code
-                ntrips
+                ntrips # Number of total trips in the travel day of reference
                #time to public services
                )
 
