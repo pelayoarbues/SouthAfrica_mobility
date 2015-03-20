@@ -1,0 +1,292 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={Pelayo Arbués, gonzalezpelayo@gmail.com},
+            pdftitle={Mobility and accessibility of elders in South Africa},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{5}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+\setlength{\droptitle}{-2em}
+  \title{Mobility and accessibility of elders in South Africa}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Pelayo Arbués,
+\href{mailto:gonzalezpelayo@gmail.com}{\nolinkurl{gonzalezpelayo@gmail.com}}}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{March 2015}
+
+
+\usepackage{natbib}
+\usepackage{longtable}
+
+
+\begin{document}
+
+\maketitle
+
+
+\section{Abstract}\label{abstract}
+
+\emph{Elders mobility is critical for social integration and essential
+to one's independence, the maintenance of well-being and quality of
+life. Although African populations are aging at much slower rates than
+the rest of the world, there is a growing recognition of population
+aging, especially in South Africa. In this paper we study how South
+African elders behave in travel terms. In particular we study the
+mobility of this segment of population and their accessibility to public
+services by public and private means.}
+
+\subsection{Objective}\label{objective}
+
+In this paper we could study the effects of different sociodemographic
+variables on travel participation (Probit/Logit: travel or not), number
+of trips taken (Ordered probit). Preliminary ideas include studying
+elders mobility but also handicapped and disabled people.
+
+\subsection{Data description}\label{data-description}
+
+The National Household Travel Survey in South Africa (NHTS) was
+conducted between January and March 2013, and a total of 51 341
+households and/or dwelling units were sampled, using a random stratified
+sample design. The findings are representative of the population of
+South Africa and can be analysed and reported on at provincial,
+municipal and Transport Analysis Zone (TAZ) levels.
+
+Table \ref{tab: nominal1} contains the distribution of categorical
+variables in the sample.
+
+
+
+\begin{longtable}{llrrr}
+ \textbf{Variable} & \textbf{Levels} & $\mathbf{n}$ & $\mathbf{\%}$ & $\mathbf{\sum \%}$ \\ 
+  \hline
+Race & African/Black & 126797 & 80.6 & 80.6 \\ 
+   & Coloured & 16623 & 10.6 & 91.2 \\ 
+   & Indian/asian & 3544 & 2.2 & 93.4 \\ 
+   & White & 10309 & 6.5 & 100.0 \\ 
+   \hline
+ & all & 157273 & 100.0 &  \\ 
+   \hline
+\hline
+Gender & Male & 74605 & 47.4 & 47.4 \\ 
+   & Female & 82668 & 52.6 & 100.0 \\ 
+   \hline
+ & all & 157273 & 100.0 &  \\ 
+   \hline
+\hline
+Disabled & No & 131462 & 93.3 & 93.3 \\ 
+   & Yes & 9425 & 6.7 & 100.0 \\ 
+   \hline
+ & all & 140887 & 100.0 &  \\ 
+   \hline
+\hline
+Age & Age < 18 & 57539 & 36.7 & 36.7 \\ 
+   & Age 18-35 & 47221 & 30.1 & 66.7 \\ 
+   & Age 36-50 & 26213 & 16.7 & 83.4 \\ 
+   & Age 51-64 & 15905 & 10.1 & 93.6 \\ 
+   & Age 65-79 & 7813 & 5.0 & 98.5 \\ 
+   & Age 80+ & 2268 & 1.4 & 100.0 \\ 
+   \hline
+ & all & 156959 & 100.0 &  \\ 
+   \hline
+\hline
+Labor\_situation & Working & 45407 & 41.9 & 41.9 \\ 
+   & Student & 14995 & 13.8 & 55.8 \\ 
+   & Housewife & 4109 & 3.8 & 59.6 \\ 
+   & Pensioner & 11998 & 11.1 & 70.6 \\ 
+   & Unemployed & 31818 & 29.4 & 100.0 \\ 
+   \hline
+ & all & 108327 & 100.0 &  \\ 
+   \hline
+\hline
+Education\_level & No schooling & 26858 & 17.7 & 17.7 \\ 
+   & General & 65529 & 43.2 & 60.9 \\ 
+   & Further & 53001 & 34.9 & 95.8 \\ 
+   & Higher & 4207 & 2.8 & 98.6 \\ 
+   & Post & 2142 & 1.4 & 100.0 \\ 
+   \hline
+ & all & 151737 & 100.0 &  \\ 
+   \hline
+\hline
+Have\_licence & Yes & 23475 & 14.9 & 14.9 \\ 
+   & No & 128880 & 82.0 & 96.9 \\ 
+   & Unspecified & 4918 & 3.1 & 100.0 \\ 
+   \hline
+ & all & 157273 & 100.0 &  \\ 
+   \hline
+\hline
+Area\_of\_residence & Metro & 45794 & 29.1 & 29.1 \\ 
+   & Urban & 48548 & 30.9 & 60.0 \\ 
+   & Rural & 62931 & 40.0 & 100.0 \\ 
+   \hline
+ & all & 157273 & 100.0 &  \\ 
+   \hline
+\hline
+Income\_quintile & Lowest income quintile & 28488 & 18.1 & 18.1 \\ 
+   & Quintile 2 & 46511 & 29.6 & 47.7 \\ 
+   & Quintile 3 & 33978 & 21.6 & 69.3 \\ 
+   & Quintile 4 & 25216 & 16.0 & 85.3 \\ 
+   & Highest income quintile & 23080 & 14.7 & 100.0 \\ 
+   \hline
+ & all & 157273 & 100.0 &  \\ 
+   \hline
+\hline
+Access\_to\_motor\_vehicle & No motor vehicles & 111259 & 70.7 & 70.7 \\ 
+   & Access to motor vehicles & 46014 & 29.3 & 100.0 \\ 
+   \hline
+ & all & 157273 & 100.0 &  \\ 
+   \hline
+\hline
+Traveled\_in\_refday & Yes & 124308 & 80.0 & 80.0 \\ 
+   & No & 31109 & 20.0 & 100.0 \\ 
+   \hline
+ & all & 155417 & 100.0 &  \\ 
+   \hline
+\hline
+\hline
+\caption{Variables tabulation} 
+\label{tab: nominal1}
+\end{longtable}
+
+\}
+
+\subsubsection{Acessibility variable}\label{acessibility-variable}
+
+The NHTS includes information about travel times to the following
+nearest facilities: food and grocery shops, other shops, traditional
+healer, church, medical services, post office, welfare station, police
+station, municipality representative, tribal authority and
+banks/financial services. In this fashion, each household representative
+reports the travel times and the usual mean of transport used to reach
+it.
+
+
+
+\begin{table}[ht]
+\centering
+{\footnotesize
+\begin{tabular}{lrrrrrrrrrr}
+ \textbf{Variable} & $\mathbf{n}$ & \textbf{Min} & $\mathbf{q_1}$ & $\mathbf{\widetilde{x}}$ & $\mathbf{\bar{x}}$ & $\mathbf{q_3}$ & \textbf{Max} & $\mathbf{s}$ & \textbf{IQR} & \textbf{\#NA} \\ 
+  \hline
+Food\_shops & 150395 & 1 & 15 & 25 & 32.2 & 40 & 300 & 28.4 & 25 &   6878 \\ 
+  Other\_shops & 143699 & 1 &  5 & 10 & 18.9 & 25 & 300 & 21.6 & 20 &  13574 \\ 
+  Traditional\_healer &  28921 & 1 & 15 & 25 & 34.3 & 45 & 300 & 34.7 & 30 & 128352 \\ 
+  Church & 131618 & 1 & 10 & 15 & 22.2 & 30 & 300 & 21.1 & 20 &  25655 \\ 
+  Medical\_services & 141476 & 1 & 15 & 20 & 28.5 & 30 & 300 & 25.6 & 15 &  15797 \\ 
+  Postal\_office & 114509 & 1 & 15 & 20 & 28.2 & 30 & 300 & 25.4 & 15 &  42764 \\ 
+  Welfare\_station & 107514 & 1 & 15 & 30 & 33.8 & 45 & 300 & 28.3 & 30 &  49759 \\ 
+  Police\_station & 126172 & 1 & 15 & 20 & 29.7 & 35 & 300 & 25.6 & 20 &  31101 \\ 
+  Municipal\_office & 118370 & 1 & 15 & 25 & 31.5 & 40 & 300 & 27.2 & 25 &  38903 \\ 
+  Tribal\_authority &  52587 & 1 & 15 & 20 & 31.1 & 40 & 300 & 29.0 & 25 & 104686 \\ 
+  Financial\_services & 140065 & 1 & 15 & 30 & 32.5 & 40 & 300 & 27.5 & 25 &  17208 \\ 
+  \end{tabular}
+}
+\caption{Travel times to different services} 
+\label{tab: timevars}
+\end{table}
+
+Equation \ref{eq: acc1} shows the first approach taken to build the
+accessibility variable, travel times to all facilities have been
+averaged for each household.
+
+\begin{eqnarray}
+\sum_{j=1}^{n}\frac{time_{hj}}{n}
+\label{eq: acc1}
+\end{eqnarray}
+
+For those household where all variables in Table \ref{tab: timevars} are
+missing, the value for \(Acc_{h}\) has been replaced by the average
+value in the Traffic Analysis Zone. Table \ref{tab: accvars} displays
+statistical information for \(Acc_{h}\). The average values for
+households located in each TAZ are displayed in Figure
+\ref{Fig: acc1map}.
+
+
+\begin{table}[ht]
+\centering
+{\footnotesize
+\begin{tabular}{lrrrrrrrrrr}
+ \textbf{Variable} & $\mathbf{n}$ & \textbf{Min} & $\mathbf{q_1}$ & $\mathbf{\widetilde{x}}$ & $\mathbf{\bar{x}}$ & $\mathbf{q_3}$ & \textbf{Max} & $\mathbf{s}$ & \textbf{IQR} & \textbf{\#NA} \\ 
+  \hline
+X.Acc\_.h. & 157273 & 1 & 15.6 & 23.6 & 28.2 & 34 & 300 & 20.0 & 18.4 & 0 \\ 
+  \end{tabular}
+}
+\caption{Descriptive statistics of accessibility variables} 
+\label{tab: accvars}
+\end{table}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{draft_files/figure-latex/acc1map-1.pdf}
+\caption{Travel in the reference day by gender}
+\label{Fig: acc1map}
+\end{figure}
+
+This measure might be improved by only taking the average of households
+reporting walking times? Next step: check time information to public
+transportation stations/stops to see if this info can be included in an
+accessibility measure.
+
+\newpage 
+\bibliographystyle{model2-names} \bibliography{mobility}
+
+\end{document}

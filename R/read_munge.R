@@ -170,12 +170,22 @@ dt$f_age <- ordered(dt$d_age,
                 )
 
 #Create a dummy variable for traveling or not in the past 7 days
-setnames(dt, "q22trip", "d_trip") #First rename colname to age, 
+setnames(dt, "q22trip", "d_trip") #First rename colname to d_trip, 
 dt$d_trip <- recode(dt$d_trip, 
         "1 = 1; 
         2 = 0;
         3 = NA"
         )
+
+dt$f_trip <- factor(dt$d_trip, 
+        levels = c(1, 0),
+        labels = c("Yes", "No")
+)
+
+#Create factor for disable
+dt$f_undisab <-  factor (dt$undisab,
+                         levels = c(0,1),
+                         labels = c("No","Yes"))
 
 #Reasons not to travel
 setnames(dt, "q23ynottrip", "d_notripreas") #First no trip reasons
@@ -234,6 +244,11 @@ dt$motorveh[(dt$q710motor != 0 & dt$q710motor != 99) |
         (dt$q710truck != 0 & dt$q710truck !=99) |
         (dt$q710othr != 0 & dt$q710othr != 99)] <- 1
 
+dt$f_motorveh <- factor(dt$motorveh,
+                        levels = c(0,1),
+                        labels = c("No motor vehicles", 
+                                   "Access to motor vehicles"))
+
 #Check the result of the previous operation
 # dtprueb <- dt %>%
 # select (motorveh,contains("q710"))
@@ -285,6 +300,15 @@ dt$laborstat[(dt$q41work2 == 3 & (dt$q42ynotwrkk2 == 4 |
                                 dt$q42ynotwrkk2 == 6 |
                                 dt$q42ynotwrkk2 == 11))] <- 5 #Unemployed
 
+dt$f_laborstat <- factor(dt$laborstat,
+                         levels = c(1,2,3,4,5),
+                         labels = c("Working",
+                                    "Student",
+                                    "Housewife",
+                                    "Pensioner",
+                                    "Unemployed"))
+
+
 #Alternatively I build a working activity in the travel day
 dt$workact <- rep(NA,nrow(dt))
 dt$q41work2 <- as.numeric(dt$q41work) #Convert to numeric for easy access
@@ -302,13 +326,18 @@ dt$workact[(dt$q41work2 == 3 & (dt$q42ynotwrkk2 == 3 |
                                 dt$q42ynotwrkk2 == 9 |
                                 dt$q42ynotwrkk2 == 11))] <- 4 #Not working
 
+dt$f_workact <- factor(dt$laborstat,
+                         levels = c(1,2,3,4),
+                         labels = c("Working",
+                                    "Student",
+                                    "Housewife",
+                                    "Not working"))
 
-dt2 <- dt %>%
-        select(uqno, q41work, q42ynotwrkk, laborstat, workact)
 ################################################################################
 #                               Acc_i = (Sum[t]/n)
 ################################################################################
 sel <- grep("^q711(.*)time$", names(dt), value=T) #Select variables with time to facilities
+sel <- append(sel,"q711trtribal")
 dt[ ,sel][dt[ ,sel] == 888] <- NA #Convert "Not applicable" responses to NA
 dt[ ,sel][dt[ ,sel] == 998] <- NA #Convert "Unspecified" responses to NA
 dt[ ,sel][dt[ ,sel] == 999] <- NA #Convert "Do not know" responses to NA
@@ -322,12 +351,27 @@ dt$nrecord <- rowSums(!is.na(dt[ ,sel]))
 #Compute average times
 dt$avgtime <- (dt$timesum/dt$nrecord)
 
+################################################################################
+#                               acc.taz = Avg_z((Sum[t]/n))
+################################################################################
+#Compute an accessibility variable for each TAZ, taking average of avgtime of each
+#person living in each TAZ
+dt <- dt %>%
+        group_by(tazcode) %>%
+        summarise(acc.taz = mean(avgtime,na.rm=TRUE)) %>%
+        inner_join(dt, by='tazcode')
 
 
-        dt2 <- dt %>%
-        select(timesum,nrecord,avgtime, q711shptime,q711oshptime,q711hetime, 
-               q711chtime,q711medtime,q711ptime,q711wtime,
-               q711poltime,q711muntime,q711fintime)
+################################################################################
+#                               Acc_i = (Sum[t]/n) (avgtime2)
+
+                        #avgtime2 = Filling NAs in avgtime with acc.taz
+################################################################################
+dt$avgtime2 <- dt$avgtime
+dt$avgtime2 <- ifelse(is.na(dt$avgtime2), dt$acc.taz, dt$avgtime2) 
+
+
+
 
 ################################################################################
 #                               SELECT variables
@@ -338,28 +382,45 @@ dt$avgtime <- (dt$timesum/dt$nrecord)
 #Subset dt with those variables likely to be used.
 dt2 <- dt %>%
         select(id, #person identifier
-               f_educa, # Ordered factor variable for education
+                f_educa, # Ordered factor variable for education
 #                d_educa, # Categorical variable for education
 #                d_male, #Dummy variable for male (1) and female (0)
-               gender, #Factor variable for gender
+                gender, #Factor variable for gender
 #                d_age, # Categorical variable for age
-               f_age, # Ordered factor variable for age
-               race, #Factor variable for race
+                f_age, # Ordered factor variable for age
+                race, #Factor variable for race
 #                d_race, #Dummy variable for race
-               f_havelicence, #Factor variable for licence
+                f_havelicence, #Factor variable for licence
 #                d_havelicence, #Dummy variable for licence
-               d_trip, #collects if the person travelled (1) or not(0) in past 7 days
-               f_notripreas,#Reasons for not travelling
-               f_area, #Type of area (metro, urban, rural)
-               quintile.y, #Income quintiles
-               incomesour, #main source of income
-                laborstat, #labor status
-               motorveh, #Owns or have access to a motor vehicle (1), no access (0)
-               tazcode, #Travel analysis zone code
-               pr_code.x, # Province code
-                ntrips # Number of total trips in the travel day of reference
-               #time to public services
+#                d_trip, #collects if the person travelled (1) or not(0) in past 7 days
+                f_trip,
+                f_notripreas,#Reasons for not travelling
+                f_area, #Type of area (metro, urban, rural)
+                quintile.y, #Income quintiles
+                incomesour, #main source of income
+                f_undisab,
+#                 laborstat, #labor status
+                f_laborstat,
+#                 workact, #working activity in the day of reference
+                f_workact,
+                f_motorveh, ##Owns or have access to a motor vehicle (factor)
+#                 motorveh, #Owns or have access to a motor vehicle (1), no access (0)
+                tazcode, #Travel analysis zone code
+                pr_code.x, # Province code
+                ntrips, # Number of total trips in the travel day of reference
+                avgtime2, #Average time to public services per person
+                acc.taz     #TAZ accessibility: Average time to public services per person
                )
 
-rm(dt,house.df,person.df)
+# rm(dt,house.df,person.df)
+
+
+# #Subset dt with those variables including travel times
+# 
+dt3 <- dt %>%
+        select(id,q711shptime,q711oshptime,q711hetime, 
+q711chtime,q711medtime,q711ptime,q711wtime,q711trtribal,
+q711poltime,q711muntime,q711fintime)
+        
+
 

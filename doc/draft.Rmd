@@ -1,14 +1,638 @@
 ---
-title: "Untitled"
+title: "Mobility and accessibility of elders in South Africa"
+author: "Pelayo Arbués, gonzalezpelayo@gmail.com"
+date: "March 2015"
+header-includes:
+   - \usepackage{natbib}
+   - \usepackage{longtable}
+output:
+  pdf_document:
+    fig_caption: yes
+    keep_tex: yes
+    number_sections: yes
+  html_document:
+    fig_caption: yes
+    force_captions: yes
+    highlight: pygments
+    number_sections: yes
+    theme: cerulean
+csl: elsevier-harvard.csl
+
 ---
 
-
-```{r, results='hide', message=FALSE, warning=FALSE, echo=FALSE}
-setwd("/Users/pelayogonzalez/SouthAfrica_mobility")
-bib <- read.bibtex("./doc/mobility.bib")
-source("./R/read_munge.R", echo=FALSE)
+```{r, echo=FALSE}
+  # devtools::install_github("cboettig/knitcitations@v1")
+  library(knitcitations); cleanbib()
+  cite_options(citation_format = "pandoc", check.entries=FALSE)
+  library(bibtex)
 ```
 
+```{r loadpackages, include=FALSE}
+library(ggplot2)
+library(INBOtheme)
+library(scales)
+library(reporttools)
+```
+
+```{r Read_munge, echo=FALSE, message=FALSE, warning=FALSE, results='hide', cache=TRUE}
+###################                                             ###############
+###################                                             ###############
+                                # NHTS 2014#
+###################                                             ###############
+###################                                             ###############
+
+
+# Author: Pelayo G. Arbués <gonzalezpelayo@gmail.com>
+
+################################################################################
+#                         + LOAD REQUIRED PACKAGES +
+################################################################################
+
+
+#Require packages
+packages <- c("foreign", "data.table", "plyr", "dplyr", "knitr", "car")
+sapply(packages, require, character.only = TRUE, quietly = TRUE)
+
+################################################################################
+#                               READ DATA
+################################################################################
+
+
+person.df <- read.dta("/Users/pelayogonzalez/SouthAfrica_mobility/Data/stata/nhts-2013-person-v1-20140718.dta")
+house.df <- read.dta("/Users/pelayogonzalez/SouthAfrica_mobility/Data/stata/nhts-2013-house-v1-20140718.dta")
+#Merge data
+dt <- merge(person.df, house.df, by = c("UQNO"),all = TRUE)
+names(dt) <- tolower(names(dt))
+
+################################################################################
+#                               MUNGE
+################################################################################
+
+
+#We are keeping numeric variables (dummies) to use in regression analysis easier 
+#but also factors plotting and descriptive purposes
+
+
+#Create an unique IDENTIFIER for person combining  uqno and personno
+dt$id <- paste(dt$uqno,dt$personno)
+length(unique(dt$id))
+
+#Create a new EDUCATION variable (educa) with less categories
+dt$educa <- revalue(dt$q31hiedu, 
+        c(
+        #No schooling        
+        "No schooling"="1",
+        #General (0-9)       
+        "Grade R/00"="2",
+        "Grade 1/ Sub A/Class 1"="2",
+        "Grade 2 / Sub B/Class 2"="2",
+        "Grade 3/Standard 1/ ABET 1(Kha Ri Gude, Sanli)"="2",
+        "Grade 4/ Standard 2" ="2",
+        "Grade 5/ Standard 3/ ABET 2"="2",
+        "Grade 6/Standard 4"="2",
+        "Grade 7/Standard 5/ ABET 3"="2",
+        "Grade 8/Standard 6/Form 1"="2",
+        "Grade 9/Standard 7/Form 2/ ABET 4"="2",
+        #Further   
+        "Grade 10/ Standard 8/ Form 3" = "3",
+        "Grade 11/ Standard 9/ Form 4"="3",
+        "Grade 12/Standard 10/Form 5/Matric (No Exemption)"="3",
+        "Grade 12/Standard 10/Form 5/Matric (Exemption *)"="3",
+        "Certificate with less than Grade 12/Std 10"="3",       
+        "Diploma with less than Grade 12/Std 10"="3",           
+        "Certificate with Grade 12/Std 10"="3",                 
+        "Diploma with Grade 12/Std 10"="3", 
+        "NTC 1/ N1/NC (V) Level 2"="3",
+        "NTC 2/ N2/ NC (V) Level 3"="3",
+        "NTC 3/ N3/NC (V)/Level 4"="3",
+        #Higher  
+        "N4/NTC 4" = "4",
+        "N5/NTC 5" = "4",
+        "N6/NTC 6" = "4",
+        "Higher Diploma (Technikon)" = "4",
+        "Bachelors Degree" = "4",
+        #Post
+        "Post Higher Diploma (Technikon Masters, Doctoral)" = "5",
+        "Bachelors Degree and post-graduate diploma" = "5",       
+        "Honours Degree" = "5",                                   
+        "Higher degree (Masters, Doctorate)" = "5", 
+        "Other" = NA,
+        "Do not know" = NA,
+        "Unspecified" = NA)
+        )
+
+# Make No schooling first and label the values
+dt$f_educa <- ordered(dt$educa,
+                     levels = c(1,2,3,4,5),
+                     labels = c("No schooling",
+                                "General",
+                                "Further",
+                                "Higher",
+                                "Post")
+                     )
+
+
+#Create dummy variable
+dt$d_educa <- as.integer(dt$educa)
+dt$d_educa <- recode(dt$d_educa, 
+                       "1 = 0; 
+                        2 = 1;
+                        3 = 2;
+                        4 = 3;
+                        5 = 4"
+                     )
+
+
+#DISABILITY undisab is integer but lets convert it to a factor (f_undisab) and change 
+#unspecified to NA.
+dt$f_undisab <- factor(dt$undisab,
+                     levels = c(0,1,8),
+                     labels = c("Not disabled","Disabled","Unspecified"))
+dt$f_undisab <- revalue(dt$f_undisab, 
+                    c("Unspecified"=NA)
+                    )
+
+#Convert undisab to dummy variable where:
+#       Not disabled = 0
+#       Disabled = 1
+#       Unspecified converted to NA
+dt$d_undisab <- recode(dt$undisab, 
+        "0 = 0; 
+        1 = 1;
+        8 = NA"
+        )
+
+#Convert LICENCE to numeric and change unspecified to NA
+dt$d_licence <- as.integer(dt$f_havelicence)
+dt$d_licence <- recode(dt$d_licence, 
+        "1 = 1; 
+        2 = 0;
+        3 = NA"
+        )
+
+#Convert RACE to numeric and change unspecified to NA
+dt$d_race<- as.integer(dt$race)
+dt$d_race <- recode(dt$d_race, 
+        "1 = 1; 
+        2 = 0;
+        3 = NA"
+        )
+
+#Create male variable, takes=1 for male, 0 female
+dt$d_male <- as.integer(dt$gender)
+dt$d_male <- recode(dt$d_male, 
+        "1 = 1; 
+        2 = 0"
+        )
+
+#Create a categorical variable with Age information
+setnames(dt, "d_age", "age") #First rename d_age to age, 
+#in order to be able to use d_age as categorical
+dt$d_age[dt$age < 18] <- 0
+dt$d_age[dt$age >= 18 & dt$age < 36] <- 1
+dt$d_age[dt$age >= 36 & dt$age < 51] <- 2
+dt$d_age[dt$age >= 51 & dt$age < 65] <- 3
+dt$d_age[dt$age >= 65 & dt$age < 79] <- 4
+dt$d_age[dt$age >= 80] <- 5
+
+#Create an ordered factor variable f_age
+dt$f_age <- ordered(dt$d_age,
+                levels = c(0,1,2,3,4,5),
+                labels = c("Age < 18",
+                           "Age 18-35",
+                           "Age 36-50",
+                           "Age 51-64",
+                           "Age 65-79",
+                           "Age 80+")
+                )
+
+#Create a dummy variable for traveling or not in the past 7 days
+setnames(dt, "q22trip", "d_trip") #First rename colname to d_trip, 
+dt$d_trip <- recode(dt$d_trip, 
+        "1 = 1; 
+        2 = 0;
+        3 = NA"
+        )
+
+dt$f_trip <- factor(dt$d_trip, 
+        levels = c(1, 0),
+        labels = c("Yes", "No")
+)
+
+#Create factor for disable
+dt$f_undisab <-  factor (dt$undisab,
+                         levels = c(0,1),
+                         labels = c("No","Yes"))
+
+#Reasons not to travel
+setnames(dt, "q23ynottrip", "d_notripreas") #First no trip reasons
+dt$f_notripreas <- factor(dt$d_notripreas, 
+                levels = c(01,02,03,04,05,07,08,10,12,13,14,16,88,99),
+                labels = c("Did not need to travel",
+                          "Financial reasons",
+                          "Not well enough to travel",
+                          "Too expensive",
+                          "Not enough time to travel",
+                          "No available public transport",
+                          "Disabled",
+                          "Too old/young",
+                          "No interest",
+                          "Taking care of relative",
+                          "No particular reason",
+                          "Other",
+                          "Not applicable",
+                          "Unspecified")
+                )
+
+#Type of area: Metro, urban, rural
+setnames(dt, "type", "f_area") #First no trip reasons
+
+#Main source of income
+setnames(dt, "q74mainn", "incomesour") #Main income source
+dt$incomesour <- revalue(dt$incomesour,
+                         c("Salaries/wages/commission" = 1,
+                           "Income from a business" = 1,
+                           "Sales of farming products and services" = 1,
+                           "other income sources e.g. rental income, interest" =1,
+                           "Pensions" = 2,
+                           "Grants" = 2,
+                           "Income from UIF" = 2,
+                           "Remittances/ including child maintenance" = 3,
+                           "Unspecified" = NA)
+                         )
+
+# Make No schooling first and label the values
+dt$incomesour <- factor(dt$incomesour,
+                      levels = c(1,2,3),
+                      labels = c("Wage/rental/Sales",
+                                 "Unempl/Grant/Pension",
+                                 "Remittances/child maintenance")
+                )
+
+
+#Create motoveh, a variable that takes value 1 if the household has access to a private vehicle
+#                 motor <- grep("^q710", names(dt), value=TRUE) #to find colums starting with q710
+dt$motorveh <- rep(0,nrow(dt))
+dt$motorveh[(dt$q710motor != 0 & dt$q710motor != 99) | 
+        (dt$q710caremp != 0 & dt$q710caremp != 99) |
+        (dt$q710carhh != 0 & dt$q710carhh != 99) |
+        (dt$q710carvfr != 0 & dt$q710carvfr != 99) |                    
+        (dt$q710mbus != 0 & dt$q710mbus != 99) |            
+        (dt$q710truck != 0 & dt$q710truck !=99) |
+        (dt$q710othr != 0 & dt$q710othr != 99)] <- 1
+
+dt$f_motorveh <- factor(dt$motorveh,
+                        levels = c(0,1),
+                        labels = c("No motor vehicles", 
+                                   "Access to motor vehicles"))
+
+#Check the result of the previous operation
+# dtprueb <- dt %>%
+# select (motorveh,contains("q710"))
+
+
+################################################################################
+#          Count number of trips to estimate ordered model
+################################################################################
+sel <- grep("^q24", names(dt)) #Find columns index starting with q24
+values <- 88 #Unspecified and missing values to replace
+dt[ ,sel][dt[ ,sel] == 88] <- NA
+
+
+#Compute total number of trips
+dt$ntrips <- rowSums(dt[,sel]) 
+
+
+################################################################################
+#          Dummy variables of reasons to trip
+################################################################################
+#Work (1 if trip to work >0, 0 otherwise)
+
+#Educa (1 if trip to educative center >0, 0 otherwise)
+
+################################################################################
+#          Mode of travel used in the travel day
+################################################################################
+sel <- grep("^q25", names(dt), value=T) #Select variables containing number of trips by mode
+
+#Create categorical variable indicating: 1 private vehicle, 2 walking, 3 bike, 4 public transport...
+#This variable will collect the main mode (that mode that outnumbers the rest)
+
+
+################################################################################
+#                                Employment status
+################################################################################
+dt$laborstat <- rep(NA,nrow(dt))
+dt$q41work2 <- as.numeric(dt$q41work) #Convert to numeric for easy access
+dt$q42ynotwrkk2 <- as.numeric(dt$q42ynotwrkk) #Convert to numeric for easy access
+
+dt$laborstat[(dt$q41work2 == 1 | dt$q41work2 == 2)] <- 1 #Working
+dt$laborstat[(dt$q41work2 == 3 & (dt$q42ynotwrkk2 == 8 | 
+                                  dt$q42ynotwrkk2 == 7))] <- 1 #Working (on leave or sick)
+dt$laborstat[(dt$q41work2 == 3 & dt$q42ynotwrkk2 == 1)] <- 2 #Student
+dt$laborstat[(dt$q41work2 == 3 & dt$q42ynotwrkk2 == 2)] <- 3 #Housewife
+dt$laborstat[(dt$q41work2 == 3 & dt$q42ynotwrkk2 == 3)] <- 4 #Pensioner
+dt$laborstat[(dt$q41work2 == 3 & (dt$q42ynotwrkk2 == 4 |
+                                dt$q42ynotwrkk2 == 5   |
+                                dt$q42ynotwrkk2 == 6 |
+                                dt$q42ynotwrkk2 == 11))] <- 5 #Unemployed
+
+dt$f_laborstat <- factor(dt$laborstat,
+                         levels = c(1,2,3,4,5),
+                         labels = c("Working",
+                                    "Student",
+                                    "Housewife",
+                                    "Pensioner",
+                                    "Unemployed"))
+
+
+#Alternatively I build a working activity in the travel day
+dt$workact <- rep(NA,nrow(dt))
+dt$q41work2 <- as.numeric(dt$q41work) #Convert to numeric for easy access
+dt$q42ynotwrkk2 <- as.numeric(dt$q42ynotwrkk) #Convert to numeric for easy access
+
+dt$workact[(dt$q41work2 == 1 | dt$q41work2 == 2)] <- 1 #Working
+dt$workact[(dt$q41work2 == 3 & dt$q42ynotwrkk2 == 1)] <- 2 #Student
+dt$workact[(dt$q41work2 == 3 & dt$q42ynotwrkk2 == 2)] <- 3 #Housewife
+dt$workact[(dt$q41work2 == 3 & (dt$q42ynotwrkk2 == 3 | 
+                                dt$q42ynotwrkk2 == 4 |
+                                dt$q42ynotwrkk2 == 5 |
+                                dt$q42ynotwrkk2 == 6 |
+                                dt$q42ynotwrkk2 == 7 |
+                                dt$q42ynotwrkk2 == 8 |
+                                dt$q42ynotwrkk2 == 9 |
+                                dt$q42ynotwrkk2 == 11))] <- 4 #Not working
+
+dt$f_workact <- factor(dt$laborstat,
+                         levels = c(1,2,3,4),
+                         labels = c("Working",
+                                    "Student",
+                                    "Housewife",
+                                    "Not working"))
+
+################################################################################
+#                               Acc_i = (Sum[t]/n)
+################################################################################
+sel <- grep("^q711(.*)time$", names(dt), value=T) #Select variables with time to facilities
+sel <- append(sel,"q711trtribal")
+dt[ ,sel][dt[ ,sel] == 888] <- NA #Convert "Not applicable" responses to NA
+dt[ ,sel][dt[ ,sel] == 998] <- NA #Convert "Unspecified" responses to NA
+dt[ ,sel][dt[ ,sel] == 999] <- NA #Convert "Do not know" responses to NA
+
+
+dt$timesum <- rep(NA,nrow(dt)) #Create accessibility variable in dt
+dt$timesum <- rowSums(dt[,sel], na.rm=TRUE) #Sum times to public serv if not NA
+dt["timesum"][dt["timesum"] == 0] <- NA #Replace 0 with NA
+#Count number of columns where times are not na
+dt$nrecord <- rowSums(!is.na(dt[ ,sel]))
+#Compute average times
+dt$avgtime <- (dt$timesum/dt$nrecord)
+
+################################################################################
+#                               acc.taz = Avg_z((Sum[t]/n))
+################################################################################
+#Compute an accessibility variable for each TAZ, taking average of avgtime of each
+#person living in each TAZ
+dt <- dt %>%
+        group_by(tazcode) %>%
+        summarise(acc.taz = mean(avgtime,na.rm=TRUE)) %>%
+        inner_join(dt, by='tazcode')
+
+
+################################################################################
+#                               Acc_i = (Sum[t]/n) (avgtime2)
+
+                        #avgtime2 = Filling NAs in avgtime with acc.taz
+################################################################################
+dt$avgtime2 <- dt$avgtime
+dt$avgtime2 <- ifelse(is.na(dt$avgtime2), dt$acc.taz, dt$avgtime2) 
+
+
+
+
+################################################################################
+#                               SELECT variables
+################################################################################
+
+
+
+#Subset dt with those variables likely to be used.
+dt2 <- dt %>%
+        select(id, #person identifier
+                f_educa, # Ordered factor variable for education
+#                d_educa, # Categorical variable for education
+#                d_male, #Dummy variable for male (1) and female (0)
+                gender, #Factor variable for gender
+#                d_age, # Categorical variable for age
+                f_age, # Ordered factor variable for age
+                race, #Factor variable for race
+#                d_race, #Dummy variable for race
+                f_havelicence, #Factor variable for licence
+#                d_havelicence, #Dummy variable for licence
+#                d_trip, #collects if the person travelled (1) or not(0) in past 7 days
+                f_trip,
+                f_notripreas,#Reasons for not travelling
+                f_area, #Type of area (metro, urban, rural)
+                quintile.y, #Income quintiles
+                incomesour, #main source of income
+                f_undisab,
+#                 laborstat, #labor status
+                f_laborstat,
+#                 workact, #working activity in the day of reference
+                f_workact,
+                f_motorveh, ##Owns or have access to a motor vehicle (factor)
+#                 motorveh, #Owns or have access to a motor vehicle (1), no access (0)
+                tazcode, #Travel analysis zone code
+                pr_code.x, # Province code
+                ntrips, # Number of total trips in the travel day of reference
+                avgtime2, #Average time to public services per person
+                acc.taz     #TAZ accessibility: Average time to public services per person
+               )
+
+# rm(dt,house.df,person.df)
+
+
+# #Subset dt with those variables including travel times
+# 
+dt3 <- dt %>%
+        select(id,q711shptime,q711oshptime,q711hetime, 
+q711chtime,q711medtime,q711ptime,q711wtime,q711trtribal,
+q711poltime,q711muntime,q711fintime)
+        
+
+        
+
+```
+
+
+
+
+# Abstract
+
+*Elders mobility is critical for social integration and essential to one’s independence, the maintenance of well-being and quality of life. Although African populations are aging at much slower rates than the rest of the world, there is a growing recognition of population aging, especially in South Africa. In this paper we study how South African elders behave in travel terms. In particular we study the mobility of this segment of population and their accessibility to public services by public and private means.*
+
+##Objective
+In this paper we could study the effects of different sociodemographic variables on travel participation (Probit/Logit: travel or not), number of trips taken (Ordered probit). Preliminary ideas include studying elders mobility but also handicapped and disabled people.
+
+## Data description
+
+The  National Household Travel Survey in South Africa (NHTS) was conducted between January and March 2013, and a total of 51 341 households and/or dwelling units were sampled, using a random stratified sample design. The findings are representative of the population of South Africa and can be analysed and reported on at provincial, municipal and Transport Analysis Zone (TAZ) levels.
+
+
+Table \ref{tab: nominal1} contains the distribution of categorical variables in the sample. 
+
+```{r reporttools2,results="asis",echo=FALSE, message=FALSE, warning=FALSE}
+vars0 <- with(dt2, data.frame("Race" = dt2$race, 
+                                "Gender" = dt2$gender, 
+                                "Disabled" = dt2$f_undisab, 
+                                "Age" = dt2$f_age,
+                                "Education_level" = dt2$f_educa,
+                                "Labor_situation" = dt2$f_laborstat,
+                                "Labor_situation2" = dt2$f_workact,
+                                "Have_licence" = dt2$f_havelicence, 
+                                "Area_of_residence" = dt2$f_area,
+                                "Income_quintile" = dt2$quintile.y,
+                                "Access_to_motor_vehicle" = dt2$f_motorveh,
+                                "Traveled_in_refday" = dt2$f_trip
+                              ))
+
+vars1 <- vars0[, c("Race", 
+                   "Gender",
+                   "Disabled", 
+                   "Age",
+                   "Labor_situation",
+                   "Education_level",
+                   "Have_licence", 
+                   "Area_of_residence", 
+                   "Income_quintile",
+                   "Access_to_motor_vehicle", 
+                   "Traveled_in_refday")]
+cap1 <- "Variables tabulation"
+tableNominal(vars = vars1, cap = cap1, vertical = FALSE, lab ="tab: nominal1", 
+             longtable = TRUE)
+```
+
+
+
+```{r otherplot, echo=FALSE, fig.cap="Travel in the reference day by gender",eval=FALSE, fig.width=4, fig.height=4}
+
+# packages <- c("ggplot2", "INBOtheme", "scales")
+# sapply(packages, require, character.only = TRUE, quietly = TRUE)
+# Travel or not, by gender 
+p.tripbygender <- ggplot(dt2,aes(gender)) +
+        geom_bar(aes(fill = f_trip), position = "fill") +
+        scale_y_continuous(labels=percent) +
+        xlab("") +
+        ylab ("Percent") +
+        ggtitle("") 
+p.tripbygender
+```
+
+
+### Acessibility variable
+
+The NHTS includes information about travel times to the following nearest facilities: food and grocery shops, other shops, traditional healer, church, medical services, post office, welfare station, police station, municipality representative, tribal authority and banks/financial services. In this fashion, each household representative reports the travel times and the usual mean of transport used to reach it. 
+
+```{r timevars,results="asis",echo=FALSE, message=FALSE, warning=FALSE}
+vars2 <- with(dt3, data.frame("Food_shops" = dt3$q711shptime, 
+                                "Other_shops" = dt3$q711oshptime,      
+                                "Traditional_healer" = dt3$q711hetime, 
+                                "Church" = dt3$q711chtime,
+                                "Medical_services" = dt3$q711medtime,
+                                "Postal_office" = dt3$q711ptime,
+                                "Welfare_station" = dt3$q711wtime,
+                                "Police_station" = dt3$q711poltime,
+                                "Municipal_office" = dt3$q711muntime,
+                                "Tribal_authority" = dt3$q711trtribal, 
+                                "Financial_services" = dt3$q711fintime
+                              ))
+
+
+# vars3 <- vars2[, c("Food_shops", "")]
+cap2 <- "Travel times to different services"
+tableContinuous(vars = vars2, cap = cap2, lab = "tab: timevars",longtable = FALSE)
+
+```
+
+Equation \ref{eq: acc1} shows the first approach taken to build the accessibility variable, travel times to all facilities have been averaged for each household. 
+
+\begin{eqnarray}
+\sum_{j=1}^{n}\frac{time_{hj}}{n}
+\label{eq: acc1}
+\end{eqnarray}
+
+For those household where all variables in Table \ref{tab: timevars} are missing, the value for $Acc_{h}$ has been replaced by the average value in the Traffic Analysis Zone. Table \ref{tab: accvars} displays statistical information for $Acc_{h}$. The average values for households located in each TAZ are displayed in Figure \ref{Fig: acc1map}.
+
+
+```{r accvars,results="asis",echo=FALSE, message=FALSE, warning=FALSE}
+vars3 <- with(dt2, data.frame("$Acc_{h}" = dt2$avgtime2))
+
+cap2 <- "Descriptive statistics of accessibility variables"
+tableContinuous(vars = vars3, cap = cap2, lab = "tab: accvars",longtable = FALSE)
+
+```
+
+```{r acc1map,echo=FALSE,message=FALSE, warning=FALSE, fig.cap="Travel in the reference day by gender",cache=TRUE}
+
+#                         + LOAD REQUIRED PACKAGES +
+#Require packages
+packages <- c("maptools", "rgdal", "ggplot2")
+sapply(packages, require, character.only=TRUE, quietly=TRUE)
+
+#source theme_map
+
+source("/Users/pelayogonzalez/Dropbox/Research/Rmarkdowntemplate/themes/themes.R", echo=FALSE)
+
+
+#Load shapefiles
+
+SA.taz.spdf <- readOGR(dsn="/Users/pelayogonzalez/SouthAfrica_mobility//Data/geo",
+                              layer="TAZ2011_NHTS25JUL2014")
+
+
+SA.taz.df <- fortify(SA.taz.spdf, region = "TAZ_EXP") #TAZ_EXP
+#Base map with TAZ contour
+gg <- ggplot(data=SA.taz.df, aes(map_id=id)) 
+gg <- gg + geom_map(map=SA.taz.df, aes(x=long, y=lat), color="#0e0e0e", fill="#2ca25f", size=0.2) 
+#Compute data to be displayed
+map.dt1 <- dt2 %>%
+        group_by(tazcode) %>%
+        summarise(acc.taz = mean(acc.taz,na.rm=TRUE)) 
+
+setnames(map.dt1, "tazcode", "id") #First rename tazcode to id, 
+map.dt1$id <- as.character(map.dt1$id)
+#Plot this data
+gg <- gg + geom_map(data=map.dt1, 
+                    map=SA.taz.df, 
+                    aes(fill= cut(acc.taz,5)), 
+                    color="#0e0e0e", 
+                    size=0.2)
+#Change palette
+gg <- gg + scale_fill_brewer(type="seq", 
+                palette="RdPu")
+gg <- gg + coord_equal() 
+gg <- gg + theme_map() + 
+        theme(
+#                 legend.position="top",
+              legend.title=element_blank())  #THis can be downloaded
+# gg <- gg + theme(legend.position="right") 
+gg
+
+```
+
+
+This measure might be improved by only taking the average of households reporting walking times?
+Next step: check time information to public transportation stations/stops to see if this info can be included in an accessibility measure. 
+
+
+
+
+
+
+
+\newpage 
+\bibliographystyle{model2-names}
+\bibliography{mobility}
 
 
 
