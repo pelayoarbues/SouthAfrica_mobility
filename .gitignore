@@ -2,4 +2,6 @@
 .Rhistory
 .RData
 
+doc/draft_cache
+doc/draft_files
 Data
